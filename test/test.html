@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+
+<body>
+    <h3>Prueba</h3>
+    <script>
+        fetch('http://localhost:7777/api/signup', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'username': 'jorge gonzalez',
+                'email': 'jorgegonzalez@gmail.com',
+                'pass': '123456789'
+            }),
+        })
+            .then(resp => resp.text())
+            .then(resp => console.log(resp))
+    </script>
+</body>
+
+</html>
