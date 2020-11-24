@@ -1,3 +1,4 @@
-Pasos para poner en marcha servidor
-Instalacion de nodejs:
-    
+Listar remotos existentes:
+    git remote -v
+Cambiar la url del remoto que quieras:
+    git remote set-url origin url-mi-repositorio
