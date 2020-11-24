@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
-const { SALT_ROUNDS } = require('../bbdd/config');
+const { SALT_ROUNDS } = require('../config/config');
+const createToken = require('../services/security');
 
 module.exports = {
     validateUsername: (username)=>{
@@ -37,15 +38,16 @@ module.exports = {
         bcrypt.hash(pass,SALT_ROUNDS)
             .then((hashedPassword)=>{
                 console.log('Contraseña encriptada',hashedPassword);
-                res.send("Prueba dentro de encryp")
-                return hashedPassword;
+                createToken(res.locals.user);
+                res.status(200).json({
+                    token: createToken(res.locals.user),
+                    message: 'El token caducará en 15 días'
+                });
+                //return hashedPassword;
             })
-            .catch(e=>console.log('No se pudo encriptar la contraseña'))
+            .catch(e=>console.log('No se pudo encriptar la contraseña',e))
     },
     decryptPass: (res, pass)=>{
         res.send("Hola mundo")
-    },
-    createToken: ()=>{
-
     }
 }

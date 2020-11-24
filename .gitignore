@@ -1,2 +1,3 @@
-src/bbdd/
+src/config/
 node_modules/
+src/test/
