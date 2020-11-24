@@ -7,8 +7,7 @@ module.exports = {
         console.log("Dentro")
         pool.getConnection()
             .then(conn=>{
-                console.log('Conexion exitosa...');
-                conn.release();
+                conn.sql
             })
             .catch(e=>{
                 console.log('Error en la conexion')

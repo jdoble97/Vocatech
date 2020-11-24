@@ -34,20 +34,34 @@ module.exports = {
     validatePass: (pass)=>{
 
     },
-    encryptPass: (pass,res)=>{
+    encryptPass: (pass,res, next)=>{
         bcrypt.hash(pass,SALT_ROUNDS)
             .then((hashedPassword)=>{
                 console.log('Contraseña encriptada',hashedPassword);
-                createToken(res.locals.user);
-                res.status(200).json({
-                    token: createToken(res.locals.user),
-                    message: 'El token caducará en 15 días'
-                });
-                //return hashedPassword;
+                //createToken(res.locals.user);
+                res.locals.token = createToken(res.locals.user);
+                next();
             })
-            .catch(e=>console.log('No se pudo encriptar la contraseña',e))
+            .catch(e=>{
+                console.log('No se pudo encriptar la contraseña',e)
+                return res.status(403).send('Error en el servidor')
+            })
     },
-    decryptPass: (res, pass)=>{
-        res.send("Hola mundo")
+    decryptPass:  (res, pass, passHash)=>{
+        bcrypt.compare(res, pass, passHash)
+            .then(samePassword=>{
+                if(!samePassword){
+                    return res.status(403).send("Contraseña incorrecta.")
+                }
+                return res.status(200).send(
+                    {
+                        message: "Contraseña correcta",
+                        token: createToken(res.locals.user)
+                    }
+                )
+            })
+            .catch(err=>{
+                res.status(404).send("Se produjo un error en el servidor")
+            })
     }
 }
