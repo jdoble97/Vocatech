@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const { SALT_ROUNDS } = require('../config/config');
-const createToken = require('../services/security');
+const createToken = require('../security/security');
 
 module.exports = {
     validateUsername: (username)=>{
