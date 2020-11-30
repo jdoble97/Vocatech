@@ -1,4 +1,5 @@
 const validator = require('../helpers/validator')
+const {validateToken} = require('../security/security');
 module.exports = {
     validateData: async (req,res, next)=>{
         try{
@@ -15,6 +16,19 @@ module.exports = {
         }
     },
     prueba: (req, res)=>{
-        res.send('Gracias por insertar los datos'+res.locals.token)
+        res.send('Tu token--> '+res.locals.token)
+    },
+    isAuth: (req,res,next)=>{
+        const token = validateToken(req.headers.authorization);
+        console.log(token)
+        if(!token){
+            return res.status(403).send({message: 'No hay token'})
+        }
+        if(token.message){
+            return res.status(401).send(token);
+        }
+        res.locals.user = token
+        next();
+
     }
 }

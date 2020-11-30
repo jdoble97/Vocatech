@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const { SALT_ROUNDS } = require('../config/config');
-const createToken = require('../security/security');
+const {createToken} = require('../security/security');
 
 module.exports = {
     validateUsername: (username)=>{
@@ -60,7 +60,7 @@ module.exports = {
                     }
                 )
             })
-            .catch(err=>{
+            .catch(err => {
                 res.status(404).send("Se produjo un error en el servidor")
             })
     }
