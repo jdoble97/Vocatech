@@ -16,7 +16,7 @@ module.exports = {
         }
     },
     prueba: (req, res)=>{
-        res.send('Tu token--> '+res.locals.token)
+        res.json({message: `Tu token es ${res.locals.token}`});
     },
     isAuth: (req,res,next)=>{
         //REVISAR TOKEN VALIDATION

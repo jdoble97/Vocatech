@@ -3,10 +3,10 @@ const rutas = require('./routes/router')
 const app = express();
 const cors = require('cors')
 
-//Estableciendo cors
-//app.use(cors())
+//Estableciendo cors para permitir peticiones desde angular
+app.use(cors())
 app.use(express.urlencoded({extended:false}))
-//app.use(express.json())
+app.use(express.json())
 app.use('/',rutas)
 
 

@@ -11,7 +11,12 @@ import { HomeComponent } from './component/home/home.component';
 import { AddflashcardComponent } from './component/addflashcard/addflashcard.component';
 import { FlashcardsComponent } from './component/flashcards/flashcards.component';
 //Importar RouterModule
-import {RoutingModule} from './routing/routing.module'
+import {RoutingModule} from './routing/routing.module';
+import { AboutComponent } from './component/about/about.component'
+//Importar los servicios y ponerlos en providers
+import {AuthenticationService} from './services/authentication.service';
+//Para usar Httpclient, importar el modulo HTTP
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,13 +27,15 @@ import {RoutingModule} from './routing/routing.module'
     RegisterComponent,
     HomeComponent,
     AddflashcardComponent,
-    FlashcardsComponent
+    FlashcardsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
-    RoutingModule
+    RoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
