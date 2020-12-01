@@ -16,10 +16,16 @@ module.exports = {
             return false;
         }
         const myToken = token.split(" ")[1];
-        const payload = jwt.decode(myToken, SECRET_TOKEN, true);
-        if(payload.exp <= moment().unix()){
-            return {message: 'Token caducado'}
+        try{
+            const payload = jwt.decode(myToken, SECRET_TOKEN);
+            if(payload.exp <= moment().unix()){
+                return {message: 'Token caducado'}
+            }
+            return payload.sub;
+        }catch(err){
+            console.log('Error en la base de datos')
+
         }
-        return payload.sub;
+
     }
 }

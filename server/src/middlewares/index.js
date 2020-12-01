@@ -19,8 +19,10 @@ module.exports = {
         res.send('Tu token--> '+res.locals.token)
     },
     isAuth: (req,res,next)=>{
+        //REVISAR TOKEN VALIDATION
+        console.log('T-->',req.headers.authorization)
         const token = validateToken(req.headers.authorization);
-        console.log(token)
+        console.log("Forma del token: ",token)
         if(!token){
             return res.status(403).send({message: 'No hay token'})
         }
@@ -28,6 +30,7 @@ module.exports = {
             return res.status(401).send(token);
         }
         res.locals.user = token
+        console.log("-----"+token)
         next();
 
     }
