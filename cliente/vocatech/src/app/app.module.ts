@@ -17,6 +17,10 @@ import { AboutComponent } from './component/about/about.component'
 import {AuthenticationService} from './services/authentication.service';
 //Para usar Httpclient, importar el modulo HTTP
 import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+//Configurar para usar formulario reactivo
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,10 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     RoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

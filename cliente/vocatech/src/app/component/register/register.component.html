@@ -1,11 +1,27 @@
-<form >
-    <label for="username">Nombre de usuario</label>
-    <input type="text" name="user" id="username">
-    <br>
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email">
-    <br>
-    <label for="pass">Password</label>
-    <input type="password" name="pass" id="pass">
+<div class="containerForm">
+    <form class="formulario" novalidate [formGroup]="registro" (ngSubmit)="onSubmit()" autocomplete="off">
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label>Inserta tu nombre</mat-label>
+                <input matInput formControlName="username" type="text">
+                <mat-hint>Tu nombre</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label>Inserta tu correo</mat-label>
+                <input matInput formControlName="email" type="email">
+                <mat-hint>Tu email</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label>Inserta tu contraseña</mat-label>
+                <input matInput type="password">
+                <mat-hint>Tu contraseña</mat-hint>
+            </mat-form-field>
+        </p>
+        <button type="submit" mat-raised-button color="primary">Registrarse</button>
+    </form>
 
-</form>
+</div>
