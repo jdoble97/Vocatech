@@ -1,0 +1,13 @@
+.menu{
+    background-color: indigo;
+    position: relative;
+}
+.active{
+    background-color: purple;
+}
+.icono{
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+}

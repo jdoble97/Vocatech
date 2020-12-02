@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTabsModule} from '@angular/material/tabs';
 
 //TODO: aplicar css en vez del modulo  matgridlist
-const material = [MatFormFieldModule,MatInputModule, MatButtonModule]
+const material = [MatFormFieldModule,MatInputModule, MatButtonModule, MatTabsModule]
 
 @NgModule({
   declarations: [],

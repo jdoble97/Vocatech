@@ -14,12 +14,10 @@ import {Token} from '../../shared/token';
 })
 export class RegisterComponent implements OnInit {
   @ViewChild('fform') formTemplate;
-  user = {};
   registro: FormGroup;
   constructor(private http: AuthenticationService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.register();
     this.createForm();
   }
 
@@ -33,17 +31,38 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(){
     let usuario = JSON.stringify(this.registro.value);
+    this.register(usuario)
+  }
+
+  register(user): void{
+    this.http.getTokenFromServer(user).subscribe(resp=>{
+      if(resp['state']){
+        this.http.setToken(resp);
+        this.http.setTokenInLocalStorage();
+        this.onSubmitSuccess();
+      }else{
+        this.onSubmitFail(resp['message']);
+      }
+    });
+  }
+  onSubmitSuccess(): void{
     this.registro.reset({
       username: '',
       email: '',
       pass: ''
     });
+    //this.formTemplate.resetForm();
+    console.log('Exito')
+  }
+  onSubmitFail(message: string): void{
+    this.registro.reset({
+      username: message,
+      email: message,
+      pass: message
+    });
     this.formTemplate.resetForm();
+    console.log('fail')
   }
 
-  register():void{
-    //this.http.getToken().subscribe(books=>console.log(books));
-    let miToken: Token;
-    this.http.signup(this.user).subscribe(resp=>console.log(resp['message']));
-  }
+
 }

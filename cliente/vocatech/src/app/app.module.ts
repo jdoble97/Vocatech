@@ -10,6 +10,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { HomeComponent } from './component/home/home.component';
 import { AddflashcardComponent } from './component/addflashcard/addflashcard.component';
 import { FlashcardsComponent } from './component/flashcards/flashcards.component';
+import { LoginComponent } from './component/login/login.component';
 //Importar RouterModule
 import {RoutingModule} from './routing/routing.module';
 import { AboutComponent } from './component/about/about.component'
@@ -21,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 //Configurar para usar formulario reactivo
 import {ReactiveFormsModule} from '@angular/forms';
+import { NavbarDesktopComponent } from './component/navbar-desktop/navbar-desktop.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     HomeComponent,
     AddflashcardComponent,
     FlashcardsComponent,
-    AboutComponent
+    AboutComponent,
+    LoginComponent,
+    NavbarDesktopComponent
   ],
   imports: [
     BrowserModule,
