@@ -7,5 +7,6 @@ routes.post('/api/signup',controllers.signUpController, middleware.validateData,
 routes.get('/api/insertword',middleware.isAuth,(req,res)=>{
     res.send('Contraseña correcta '+res.locals.token)
 });
+routes.get('/api/check-token',middleware.checkToken);
 
 module.exports = routes;

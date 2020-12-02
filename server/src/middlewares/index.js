@@ -16,7 +16,7 @@ module.exports = {
         }
     },
     prueba: (req, res)=>{
-        res.json({message: `Tu token es ${res.locals.token}`});
+        res.json({state: true, token: `${res.locals.token}`});
     },
     isAuth: (req,res,next)=>{
         //REVISAR TOKEN VALIDATION
@@ -24,7 +24,7 @@ module.exports = {
         const token = validateToken(req.headers.authorization);
         console.log("Forma del token: ",token)
         if(!token){
-            return res.status(403).send({message: 'No hay token'})
+            return res.status(403).json({status: false, message: 'No hay token'})
         }
         if(token.message){
             return res.status(401).send(token);
@@ -32,6 +32,16 @@ module.exports = {
         res.locals.user = token
         console.log("-----"+token)
         next();
-
+    },
+    checkToken: (req,res)=>{
+        const token = validateToken(req.headers.authorization);
+        console.log("Forma del token: ",token)
+        if(!token){
+            return res.status(403).json({status: false, message: 'No hay token'})
+        }
+        if(token.message){
+            return res.status(401).json({status: false, message: 'Token caducado'});
+        }
+        res.status(200).json({status: true, message: 'Token válido'});
     }
 }
