@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/internal/observable';
 import {Token} from '../shared/token';
 
 @Injectable({
@@ -14,12 +13,7 @@ export class AuthenticationService {
 
   getTokenFromServer(user){
     let misHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-    //TODO: sustituir el body por el user que reciba el usuario
-    // let body = JSON.stringify({
-    //   username: 'jorge gonzalez',
-    //   email: 'jorge@gmail.com',
-    //   pass: '123456'
-    // })
+
     const url = 'http://localhost:7777/api/signup'
     return this.http.post(url, user,{headers: misHeaders});
   }
