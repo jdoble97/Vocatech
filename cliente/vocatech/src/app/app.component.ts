@@ -8,7 +8,7 @@ import {AuthenticationService} from './services/authentication.service';
 })
 export class AppComponent implements OnInit{
   title = 'vocatech';
-  login = {state:false};
+  login = {state:true};
   
   constructor(private authServices: AuthenticationService){}
 

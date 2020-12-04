@@ -15,9 +15,7 @@ module.exports = {
             console.log('Error',error)
         }
     },
-    prueba: (req, res)=>{
-        res.json({state: true, token: `${res.locals.token}`});
-    },
+
     isAuth: (req,res,next)=>{
         //REVISAR TOKEN VALIDATION
         console.log('T-->',req.headers.authorization)
@@ -43,6 +41,22 @@ module.exports = {
             return res.status(401).json({status: false, message: 'Token caducado'});
         }
         res.status(200).json({status: true, message: 'Token válido'});
+    },
+    checkUserRegister: (req, res, next)=>{
+        let user = {email: req.body.email, pass: req.body.pass, username: req.body.username};
+        if(!user.email || !user.pass || !user.username){
+            return res.status(400).json({status: false, message: 'Falta alguno de los campos'});
+        }
+        res.locals.user = user;
+        next();
+    },
+
+    checkLogin: (req, res, next)=>{
+        let user = { email: req.body.email, pass: req.body.pass }
+        if (!user.email || !user.pass) {
+            return res.status(400).json({ status: false, message: 'Falta alguno de los campos' })
+        }
+        res.locals.user = user;
+        next();
     }
-    login
 }

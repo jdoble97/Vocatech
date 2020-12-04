@@ -1,25 +1,37 @@
 const path = require('path');
+const userDB = require('../data/user');
+const security = require('../security/security');
 
 
 module.exports = {
-    homeController: (req,res)=>{
-        res.sendFile(path.join(__dirname+'/../public/index.html'))
+    homeController: (req, res) => {
+        res.sendFile(path.join(__dirname + '/../public/index.html'))
     },
-    signUpController: (req,res,next)=>{
-        let user = {username: req.body.username, email: req.body.email, pass: req.body.pass}
-        console.log("Logup", user)
-        if(!user.username || !user.email || !user.pass){
-            return res.status(400).send("Falta alguno de los campos")
+
+    signUpController: async (req, res) => {
+        let user = res.locals.user;
+        let hash = await security.encryptPass(user.pass);
+        if(!hash.status){
+            return res.status(500).json({status: false, message: 'Error al encriptar la contraseña'})
         }
-        res.locals.user = user
-        next();
+        user.pass = hash.hash;
+        let respDB = await userDB.insertUser(user);
+        if(!respDB.status){
+            return res.json(respDB);
+        }
+        return res.status(200).json({status: true, token:security.createToken(user.email)})
     },
-    loginController: (req,res,next)=>{
-        let user = {email: req.body.email, pass: req.body.pass}
-        if(!user.username || !user.email || !user.pass){
-            return res.status(400).json({state: false, message: 'Falta alguno de los campos'})
+
+    loginController: async (req, res) => {
+        let userFromDB = await userDB.makeLogin(res.locals.user);
+        if (!userFromDB) {
+            return res.status(200).json({ status: false, message: 'Email incorrecto' })
         }
-        res.locals.user = user;
-        next()
-    }  
+        console.log('DB->', userFromDB);
+        let matchPass = await security.decryptPass(res.locals.user.pass, userFromDB.pass);
+        if(!matchPass){
+            return res.status(200).json({status: false, message: 'Contraseña incorrecta'});
+        }
+        return res.status(200).json({status: true, token: security.createToken(userFromDB.email)})
+    }
 }
