@@ -1,11 +1,11 @@
 //ViewChild se usará para poder formatear el formulario en la vista
 import { Component, OnInit, ViewChild } from '@angular/core';
 //importar servicio
-import {AuthenticationService} from '../../services/authentication.service';
+import {AuthenticationService} from '../../../services/authentication.service';
 //Implementado Formulario reactivo
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {Token} from '../../shared/token';
+import {Token} from '../../../shared/token';
 
 @Component({
   selector: 'app-register',

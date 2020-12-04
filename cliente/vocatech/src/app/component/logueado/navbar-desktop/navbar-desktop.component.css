@@ -1,9 +1,5 @@
 .menu{
-    background-color: indigo;
     position: relative;
-}
-.active{
-    background-color: purple;
 }
 .icono{
     position: absolute;

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Token} from '../shared/token';
 
@@ -44,4 +44,11 @@ export class AuthenticationService {
     let url = 'http://localhost:7777/api/check-token';
     this.http.get(url,{headers:misHeaders})
   }
+
+  sendCredentials(user) {
+    let url = 'http://localhost:7777/api/login'
+    let misHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+    return this.http.post(url, user, {headers: misHeaders});
+  }
+
 }

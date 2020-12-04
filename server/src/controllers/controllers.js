@@ -13,5 +13,13 @@ module.exports = {
         }
         res.locals.user = user
         next();
-    }    
+    },
+    loginController: (req,res,next)=>{
+        let user = {email: req.body.email, pass: req.body.pass}
+        if(!user.username || !user.email || !user.pass){
+            return res.status(400).json({state: false, message: 'Falta alguno de los campos'})
+        }
+        res.locals.user = user;
+        next()
+    }  
 }
