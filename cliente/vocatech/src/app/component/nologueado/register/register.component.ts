@@ -5,17 +5,24 @@ import {AuthenticationService} from '../../../services/authentication.service';
 //Implementado Formulario reactivo
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {Token} from '../../../shared/token';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/shared/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit{
   @ViewChild('fform') formTemplate;
+
   registro: FormGroup;
-  constructor(private http: AuthenticationService, private formBuilder: FormBuilder) { }
+  public messageError: boolean;
+  message: string;
+  private user: User;
+  constructor(private http: AuthenticationService, private formBuilder: FormBuilder, private userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -31,15 +38,16 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(){
     let usuario = JSON.stringify(this.registro.value);
-    this.register(usuario)
+    this.register(usuario);
   }
 
   register(user): void{
     this.http.getTokenFromServer(user).subscribe(resp=>{
-      if(resp['state']){
-        this.http.setToken(resp);
-        this.http.setTokenInLocalStorage();
+      if(resp['status']){
         this.onSubmitSuccess();
+        this.userService.setUser(<User>resp);
+        this.userService.sendState(true);
+        this.router.navigate(['home']);
       }else{
         this.onSubmitFail(resp['message']);
       }
@@ -51,18 +59,17 @@ export class RegisterComponent implements OnInit {
       email: '',
       pass: ''
     });
-    //this.formTemplate.resetForm();
+    this.formTemplate.resetForm();
     console.log('Exito')
   }
   onSubmitFail(message: string): void{
     this.registro.reset({
-      username: message,
-      email: message,
-      pass: message
+      username: '',
+      email: '',
+      pass: ''
     });
     this.formTemplate.resetForm();
-    console.log('fail')
+    this.message = message;
+    this.messageError = true;
   }
-
-
 }

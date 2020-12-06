@@ -8,6 +8,7 @@ module.exports = {
                 let miQuery = 'INSERT INTO usuarios VALUES(?, ?, ?)'
                 return conn.query(miQuery,[user['email'],user['pass'],user['username']])
                     .then(row=>{
+                        conn.release();
                         return {status: true, message: 'Registrado exitosamente'}
                     })
                     .catch(err=>{

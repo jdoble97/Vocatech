@@ -20,12 +20,11 @@ module.exports = {
         try {
             const payload = jwt.decode(myToken, SECRET_TOKEN);
             if (payload.exp <= moment().unix()) {
-                return { message: 'Token caducado' }
+                return { status: false, message: 'Token caducado'}
             }
             return payload.sub;
         } catch (err) {
-            console.log('Error en la base de datos')
-
+            return {status: false, message: 'El token ha sido modificado'}
         }
 
     },

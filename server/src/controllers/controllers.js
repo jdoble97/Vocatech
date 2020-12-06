@@ -19,7 +19,7 @@ module.exports = {
         if(!respDB.status){
             return res.json(respDB);
         }
-        return res.status(200).json({status: true, token:security.createToken(user.email)})
+        return res.status(200).json({status: true, token:security.createToken(user.email), email: user.email})
     },
 
     loginController: async (req, res) => {
@@ -32,6 +32,6 @@ module.exports = {
         if(!matchPass){
             return res.status(200).json({status: false, message: 'Contraseña incorrecta'});
         }
-        return res.status(200).json({status: true, token: security.createToken(userFromDB.email)})
+        return res.status(200).json({status: true, token: security.createToken(userFromDB.email), email: userFromDB.email})
     }
 }

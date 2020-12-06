@@ -1,8 +1,10 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {AuthenticationService} from '../../../services/authentication.service';
 //Formulario
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +12,14 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  @Output() change: EventEmitter<boolean> = new EventEmitter();
   @ViewChild('formLogin') formLogin;
   //El nombre del FormGroup debe coincidir con el del template
   login: FormGroup;
+  public messageError: boolean;
+  message: string;
+
   constructor(private http: AuthenticationService, private formBuilder: FormBuilder,
-              private router: Router) { }
+    private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
     this.createLogin();
@@ -30,12 +33,31 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void{
-    console.log('Prueba del emitter')
-    this.emitStateLogin(false)
-    //this.router.navigate(['home']);
+    let user = JSON.stringify(this.login.value);
+    this.http.sendCredentials(user).subscribe(resp=>{
+      if(resp['status']){
+        this.onSubmitSuccess(<User>resp);
+      }
+    })
   }
 
-  emitStateLogin(stateLogin: boolean){
-    this.change.emit(stateLogin);
+  onSubmitSuccess(user:User): void{
+    this.userService.setUser(user);
+    this.userService.sendState(true);
+    this.login.reset({
+      email:'',
+      pass: ''
+    });
+    this.formLogin.resetForm();
+    this.router.navigate(['home']);
+  }
+  onSubmitError(message: string): void{
+    this.login.reset({
+      email: '',
+      pass: ''
+    });
+    this.formLogin.resetForm();
+    this.message = message;
+    this.messageError = true;
   }
 }

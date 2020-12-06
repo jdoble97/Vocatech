@@ -18,17 +18,14 @@ module.exports = {
 
     isAuth: (req,res,next)=>{
         //REVISAR TOKEN VALIDATION
-        console.log('T-->',req.headers.authorization)
         const token = validateToken(req.headers.authorization);
-        console.log("Forma del token: ",token)
         if(!token){
             return res.status(403).json({status: false, message: 'No hay token'})
         }
         if(token.message){
-            return res.status(401).send(token);
+            return res.status(401).json(token)
         }
         res.locals.user = token
-        console.log("-----"+token)
         next();
     },
     checkToken: (req,res)=>{
