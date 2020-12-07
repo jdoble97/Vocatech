@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit{
         this.onSubmitSuccess();
         this.userService.setUser(<User>resp);
         this.userService.sendState(true);
+        this.userService.setUserInStorage();
         this.router.navigate(['home']);
       }else{
         this.onSubmitFail(resp['message']);

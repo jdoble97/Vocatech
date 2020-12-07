@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
       pass: ''
     });
     this.formLogin.resetForm();
+    this.userService.setUserInStorage();
     this.router.navigate(['home']);
   }
   onSubmitError(message: string): void{

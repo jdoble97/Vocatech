@@ -1,41 +1,47 @@
+const mariadb = require('mariadb');
 const pool = require('../config/conexion');
 
 module.exports = {
-    
-    insertUser: (user)=>{
-        return pool.getConnection()
-            .then(conn=>{
-                let miQuery = 'INSERT INTO usuarios VALUES(?, ?, ?)'
-                return conn.query(miQuery,[user['email'],user['pass'],user['username']])
-                    .then(row=>{
-                        conn.release();
-                        return {status: true, message: 'Registrado exitosamente'}
+    insertUser: (user) => {
+        return new Promise((resolve, reject) => {
+            pool.getConnection()
+                .then(conn => {
+        
+                    console.log('DENTRO', conn.threadId, " CONEXIONES ACTIVAS", pool.activeConnections())
+                    let miQuery = 'INSERT INTO usuarios VALUES(?, ?, ?)'
+                    conn.query(miQuery, [user['email'], user['pass'], user['username']])
+                    .then(row => {
+                        resolve ({ status: true, message: 'Registrado exitosamente' });
                     })
-                    .catch(err=>{
-                        return {status: false, message: 'Email ya registrado'}
+                    .catch(err => {
+                        reject ({ status: false, message: 'Email ya registrado' });
                     })
-            })
-            .catch(err=>{
-                return {status: false, message: 'Error de conexion'}
-            })
+                    conn.release();
+                })
+                .catch(err => {
+                    console.log('Error por no cerrar conexion')
+                    reject ({ status: false, message: 'Erronmr de conexion' })
+                })
+        })
     },
-    makeLogin: (user)=>{
-        return pool.getConnection()
-            .then(conn=>{
-                let myQuery = "SELECT email, pass FROM usuarios WHERE email=?";
-                return conn.query(myQuery,[user.email])
-                    .then(row=>{
-                        conn.release();
-                        return row[0];
-                    })
-                    .catch(err=>{
-                        return {status:false, message:'Error en el usuario'}
-                    })
+    makeLogin: (user) => {
+        return new Promise((resolve, reject) => {
+            pool.getConnection()
+                .then(conn => {
+                    let myQuery = "SELECT email, pass FROM usuarios WHERE email=?";
 
-            })
-            .catch(err=>{
-                return {status: false, message: 'Error de conexion'}
-            })
-
-    }
+                    conn.query(myQuery, [user.email])
+                        .then(row => {
+                            resolve(row[0])
+                        })
+                        .catch(err => {
+                            reject({ status: false, message: 'Error en el usuario' });
+                        })
+                    conn.release();
+                })
+                .catch(err => {
+                    reject({ status: false, message: 'Error de conexion' });
+                })
+        })
+    },
 }

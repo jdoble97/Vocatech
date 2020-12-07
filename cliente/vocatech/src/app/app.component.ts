@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   constructor(private authServices: AuthenticationService, private userService: UserService){}
 
   ngOnInit(){
+    this.isLogin = this.userService.checkInit();
     this.userService.observerLogin.subscribe({
       next: (state)=> {
         this.isLogin = state

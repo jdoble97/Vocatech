@@ -15,11 +15,13 @@ module.exports = {
             return res.status(500).json({status: false, message: 'Error al encriptar la contraseña'})
         }
         user.pass = hash.hash;
-        let respDB = await userDB.insertUser(user);
-        if(!respDB.status){
-            return res.json(respDB);
-        }
-        return res.status(200).json({status: true, token:security.createToken(user.email), email: user.email})
+        userDB.insertUser(user)
+            .then(respuesta=>{
+                res.status(200).json({status: true, token:security.createToken(user.email), email: user.email});
+            })
+            .catch(err=>{
+                res.json(err);
+            })
     },
 
     loginController: async (req, res) => {
