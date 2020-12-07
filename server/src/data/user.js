@@ -1,4 +1,3 @@
-const mariadb = require('mariadb');
 const pool = require('../config/conexion');
 
 module.exports = {

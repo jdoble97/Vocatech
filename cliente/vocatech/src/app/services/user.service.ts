@@ -46,4 +46,7 @@ export class UserService {
     this.observerLogin.next(false);
     this.router.navigate(['/'])
   }
+  getToken(){
+    return this.user.token;
+  }
 }

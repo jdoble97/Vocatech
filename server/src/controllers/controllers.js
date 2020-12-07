@@ -1,5 +1,6 @@
 const path = require('path');
 const userDB = require('../data/user');
+const barajasDB = require('../data/baraja');
 const security = require('../security/security');
 
 
@@ -35,5 +36,15 @@ module.exports = {
             return res.status(200).json({status: false, message: 'Contraseña incorrecta'});
         }
         return res.status(200).json({status: true, token: security.createToken(userFromDB.email), email: userFromDB.email})
+    },
+
+    barajasController: async (req,res)=>{
+        barajasDB.selectBarajas(res.locals.user)
+            .then(r=>{
+                return res.status(200).json(r)
+            })
+            .catch(err=>{
+                return res.json(err)
+            })
     }
 }

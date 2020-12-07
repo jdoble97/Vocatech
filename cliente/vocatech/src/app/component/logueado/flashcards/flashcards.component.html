@@ -1,1 +1,9 @@
-<p>flashcards works!</p>
+<p>EN ESTE COMPONENTE SE CARGARAN LAS BARAJAS</p>
+<div *ngIf="barajas.length">
+    <h1>Si hay barajas se ve este componente</h1>
+    <div *ngFor="let baraja of barajas">
+        <p>ID: {{baraja.ID}}</p>
+        <p>Email: {{baraja.email}}</p>
+        <p>Nombre: {{baraja.nombre}}</p>
+    </div>
+</div>

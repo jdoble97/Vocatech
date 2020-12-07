@@ -38,6 +38,9 @@ export class LoginComponent implements OnInit {
       if(resp['status']){
         this.onSubmitSuccess(<User>resp);
       }
+      else{
+        this.onSubmitError(resp['message']);
+      }
     })
   }
 
