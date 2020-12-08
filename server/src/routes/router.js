@@ -11,6 +11,8 @@ routes.get('/api/check-token',middleware.checkToken)
 
 ////////////
 //BARAJAS
+////////////
 routes.get('/api/barajas', middleware.isAuth,controllers.barajasController)
+routes.get('/api/barajas/:id',middleware.isAuth, controllers.cartasController)
 
 module.exports = routes;
