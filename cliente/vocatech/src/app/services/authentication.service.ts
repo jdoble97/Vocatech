@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Token} from '../shared/token';
+import { ConfigurationRouteService } from './configurationRoute';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,12 @@ export class AuthenticationService {
 
   getTokenFromServer(user){
     let misHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-
-    const url = 'http://localhost:7777/api/signup'
+    const url = ConfigurationRouteService.url+'/signup'
     return this.http.post(url, user,{headers: misHeaders});
   }
 
   sendCredentials(user) {
-    let url = 'http://localhost:7777/api/login'
+    let url = ConfigurationRouteService.url+'/login'
     let misHeaders = new HttpHeaders({'Content-Type': 'application/json'})
     return this.http.post(url, user, {headers: misHeaders});
   }

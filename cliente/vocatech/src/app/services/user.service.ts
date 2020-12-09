@@ -10,7 +10,7 @@ export class UserService {
 
   private user: User = new User();
   observerLogin= new Subject<boolean>();
-  constructor(private router: Router) { 
+  constructor(private router: Router) {
   }
 
   public sendState(state: boolean): void{
