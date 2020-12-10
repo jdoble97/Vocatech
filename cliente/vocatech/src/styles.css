@@ -8,7 +8,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .menu{
-    background-color: indigo;
+    background-color: #6761A8;
     position: relative;
 }
 .active{
@@ -16,9 +16,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .containerForm{
     background-color: grey;
-    max-width: 50%;
-    margin-left: auto;
-    margin-right: auto;
 }
 .formulario{
     width: 75%;

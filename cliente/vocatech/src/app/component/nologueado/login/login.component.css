@@ -1,0 +1,7 @@
+.containerForm{
+    max-width: max-content;
+    min-height: 80vh;
+    margin: 2% auto 0 auto;
+    padding: 10%;
+    border-radius: 10%;
+}
