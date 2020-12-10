@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import {AuthenticationService} from './services/authentication.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,16 @@ import {AuthenticationService} from './services/authentication.service';
 })
 export class AppComponent implements OnInit{
   title = 'vocatech';
-  login = {state:false};
+  isLogin: boolean;
   
-  constructor(private authServices: AuthenticationService){}
+  constructor(private authServices: AuthenticationService, private userService: UserService){}
 
   ngOnInit(){
-    console.log('Dentro del app')
+    this.isLogin = this.userService.checkInit();
+    this.userService.observerLogin.subscribe({
+      next: (state)=> {
+        this.isLogin = state
+      }
+    });
   }
-
-  changeLogin(state: boolean){
-    this.login.state = false;
-    console.log("El emmit sirve")
-  }
-
 }

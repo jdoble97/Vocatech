@@ -1,7 +1,6 @@
-<app-contenedor *ngIf=" login['state'] ; else loguearse " ></app-contenedor>
+<app-contenedor *ngIf=" isLogin ; else loguearse " ></app-contenedor>
 <ng-template #loguearse>
-    <app-entrar (change)="changeLogin($event)" ></app-entrar>
+    <app-entrar></app-entrar>
 </ng-template>
-
 <router-outlet></router-outlet>
 <app-footer></app-footer>
