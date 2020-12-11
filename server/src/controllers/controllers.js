@@ -49,7 +49,7 @@ module.exports = {
             })
     },
 
-    cartasController: async(req,res)=>{
+    selectCartasController: async(req,res)=>{
         //Name's parameter
         let  id = req.params.id
         cartasDB.selectCartas(id)
@@ -58,6 +58,38 @@ module.exports = {
             })
             .catch(err=>{
                 return res.json(err)
+            })
+    },
+
+    insertCartaController: (req, res)=>{
+        let carta = req.body;
+        cartasDB.insertCarta(carta)
+            .then(resultado=>{
+                return res.status(200).json(resultado);
+            })
+            .catch(err=>{
+                return res.status(400).json(err);
+            })
+    },
+    
+    updateCartaController: (req, res)=>{
+        let carta = req.body;
+        cartasDB.updateCarta(carta)
+            .then(resultado=>{
+                return res.status(200).json(resultado);
+            })
+            .catch(err=>{
+                return res.status(400).json(err);
+            })
+    },
+    
+    deleteCartaController: (req,res)=>{
+        cartasDB.deleteCarta(req.params.id)
+            .then(resultado=>{
+                return res.status(200).json(resultado);
+            })
+            .catch(err=>{
+                return res.status(400).json(err);
             })
     }
 }
