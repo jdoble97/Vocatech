@@ -1,8 +1,9 @@
 const path = require('path');
 const userDB = require('../data/user');
-const barajasDB = require('../data/baraja');
+const barajaDB = require('../data/baraja');
 const cartasDB = require('../data/carta');
 const security = require('../security/security');
+const baraja = require('../data/baraja');
 
 
 module.exports = {
@@ -38,9 +39,20 @@ module.exports = {
         }
         return res.status(200).json({status: true, token: security.createToken(userFromDB.email), email: userFromDB.email})
     },
+    //Baraja
+    insertBarajaController: (req, res)=>{
+        let baraja = req.body;
+        barajaDB.insertBaraja(baraja)
+            .then(resultado=>{
+                return res.status(200).json(resultado);
+            })
+            .catch(err=>{
+                return res.status(400).json(err)
+            })
+    },
 
-    barajasController: async (req,res)=>{
-        barajasDB.selectBarajas(res.locals.user)
+    selectBarajasController: (req,res)=>{
+        barajaDB.selectBarajas(res.locals.user)
             .then(r=>{
                 return res.status(200).json(r)
             })
@@ -49,7 +61,28 @@ module.exports = {
             })
     },
 
-    selectCartasController: async(req,res)=>{
+    updateBarajaController: (req, res)=>{
+        barajaDB.updateBaraja(req.body)
+            .then(resultado=>{
+                return res.status(200).json(resultado);
+            })
+            .catch(err=>{
+                return res.status(400).json(err)
+            })
+    },
+
+    deleteBarajaController: (req, res)=>{
+        barajaDB.deleteBaraja(req.params.id)
+            .then(resultado=>{
+                return res.status(200).json(resultado);
+            })
+            .catch(err=>{
+                return res.status(400).json(err);
+            })
+    },
+
+    //Carta
+    selectCartasController: (req,res)=>{
         //Name's parameter
         let  id = req.params.id
         cartasDB.selectCartas(id)
