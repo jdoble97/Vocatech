@@ -6,19 +6,11 @@
     margin:0
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 62.5%;}
 .menu{
     background-color: #6761A8;
     position: relative;
 }
 .active{
     background-color: purple;
-}
-.containerForm{
-    background-color: grey;
-}
-.formulario{
-    width: 75%;
-    margin-right: auto;
-    margin-left: auto;
 }

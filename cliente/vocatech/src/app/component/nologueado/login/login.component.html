@@ -1,32 +1,57 @@
 <div class="containerForm">
-    <form class="formulario" novalidate [formGroup]="login" #formLogin="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
-        <p>
-            <mat-form-field appearance="standard">
-                <mat-label>Inserta tu correo</mat-label>
-                <input matInput formControlName="email" type="email" required>
-                <mat-hint>Tu email</mat-hint>
-                <mat-error *ngIf="login.get('email').hasError('required') && login.get('email').touched ">
-                    Email requerido
-                </mat-error>
-                <mat-error *ngIf="login.get('email').hasError('email') && login.get('email').touched ">
-                    Debes poner un correo valido
-                </mat-error>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="standard">
-                <mat-label>Inserta tu contraseña</mat-label>
-                <input matInput formControlName="pass" type="password" minlength="6">
-                <mat-hint>Tu contraseña</mat-hint>
-                <mat-error *ngIf="login.get('pass').hasError('required') && login.get('pass').touched ">
-                    Contraseña requerida
-                </mat-error>
-                <mat-error *ngIf="login.get('pass').hasError('minlength') && login.get('pass').touched ">
-                    La contraseña debe tener minimo 6 caracteres
-                </mat-error>
-            </mat-form-field>
-        </p>
-        <button type="submit" [disabled]="login.invalid" mat-raised-button color="primary">Login</button>
-    </form>
-    <h2 *ngIf="messageError"> {{message}}</h2>
+    <div class="image">
+        <h1>
+            Bienvenidos <br>
+            a <br>
+            Vocatech <br>
+        </h1>
+    </div>
+    <div class="form">
+        <form class="formulario" novalidate [formGroup]="login" #formLogin="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            <table>
+                <tr>
+                    <th>
+                        <h1>Entrar</h1>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Inserta tu correo</mat-label>
+                            <input matInput formControlName="email" type="email" required>
+                            <mat-hint>Tu email</mat-hint>
+                            <mat-error *ngIf="login.get('email').hasError('required') && login.get('email').touched ">
+                                Email requerido
+                            </mat-error>
+                            <mat-error *ngIf="login.get('email').hasError('email') && login.get('email').touched ">
+                                Debes poner un correo valido
+                            </mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Inserta tu contraseña</mat-label>
+                            <input matInput formControlName="pass" type="password" minlength="6">
+                            <mat-hint>Tu contraseña</mat-hint>
+                            <mat-error *ngIf="login.get('pass').hasError('required') && login.get('pass').touched ">
+                                Contraseña requerida
+                            </mat-error>
+                            <mat-error *ngIf="login.get('pass').hasError('minlength') && login.get('pass').touched ">
+                                La contraseña debe tener minimo 6 caracteres
+                            </mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" [disabled]="login.invalid" mat-raised-button color="primary">Login</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <h2 *ngIf="messageError"> {{message}}</h2>
+
+    </div>
 </div>
