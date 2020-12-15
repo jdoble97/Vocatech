@@ -7,14 +7,16 @@ import {AboutComponent} from '../component/nologueado/about/about.component'
 import { LoginComponent } from '../component/nologueado/login/login.component';
 import { ErrorComponent } from '../component/error/error.component';
 import { GameComponent } from '../component/logueado/game/game.component';
+import { UserGuard } from '../auth/user.guard';
 
 export const routes: Routes = [
-    {path:'home', component:HomeComponent},
-    {path:'addflashcard', component:AddflashcardComponent},
-    {path:'flashcards', component: FlashcardsComponent},
+    {path:'home', component:HomeComponent, canActivate: [UserGuard]},
+    {path:'addflashcard', component:AddflashcardComponent, canActivate: [UserGuard]},
+    {path:'flashcards', component: FlashcardsComponent, canActivate: [UserGuard]},
     {path: 'register', component: RegisterComponent},
     {path:'login', component: LoginComponent},
     {path:'about', component: AboutComponent},
-    {path: 'game', component: GameComponent},
+    {path: 'game', component: GameComponent, canActivate: [UserGuard]},
+    {path: '', component: LoginComponent},
     {path: '**',component: ErrorComponent}
 ]

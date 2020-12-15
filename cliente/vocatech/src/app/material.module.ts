@@ -5,9 +5,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
+//MatDialog
+import {MatDialogModule} from '@angular/material/dialog';
 
-//TODO: aplicar css en vez del modulo  matgridlist
-const material = [MatFormFieldModule,MatInputModule, MatButtonModule, MatTabsModule]
+
+const material = [MatFormFieldModule,MatInputModule, MatButtonModule, MatTabsModule, MatDialogModule]
 
 @NgModule({
   declarations: [],
@@ -16,5 +18,6 @@ const material = [MatFormFieldModule,MatInputModule, MatButtonModule, MatTabsMod
     material
   ],
   exports: [material],
+
 })
 export class MaterialModule { }

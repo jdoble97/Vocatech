@@ -28,6 +28,8 @@ import { ContenedorComponent } from './component/logueado/contenedor/contenedor.
 import { ErrorComponent } from './component/error/error.component';
 import { GameComponent } from './component/logueado/game/game.component';
 import { LogoutComponent } from './component/logueado/logout/logout.component';
+import { UserService } from './services/user.service';
+import { CardsComponent } from './component/logueado/cards/cards.component';
 
 
 @NgModule({
@@ -47,7 +49,8 @@ import { LogoutComponent } from './component/logueado/logout/logout.component';
     ContenedorComponent,
     ErrorComponent,
     GameComponent,
-    LogoutComponent
+    LogoutComponent,
+    CardsComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ import { LogoutComponent } from './component/logueado/logout/logout.component';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -28,4 +28,5 @@
         </p>
         <button type="submit" [disabled]="login.invalid" mat-raised-button color="primary">Registrarse</button>
     </form>
+    <h2 *ngIf="messageError"> {{message}}</h2>
 </div>
