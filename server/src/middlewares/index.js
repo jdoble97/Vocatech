@@ -44,5 +44,5 @@ module.exports = {
         }
         res.status(200).json({status: true, message: 'Token válido'});
     }
-    login
+    
 }
