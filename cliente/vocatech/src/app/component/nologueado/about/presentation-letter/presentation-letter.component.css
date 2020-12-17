@@ -1,0 +1,25 @@
+.padrre{
+    display:flex;
+    padding: 1em;
+    justify-content: space-evenly;
+    background-color: whitesmoke;
+}
+
+.mat-card, .mat-card>*{
+    
+    background-color: white;
+    color:black;
+}
+
+.img-avatar{
+    background-size: cover;
+}
+.mat-card{
+    max-width: 20%;
+    border: 10px solid lightgray;
+}
+
+.presentation-letter{
+    color:black;
+    flex-grow: 1;
+}    
