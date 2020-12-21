@@ -1,7 +1,86 @@
 .containerForm{
-    max-width: max-content;
+    width: 80%;
     min-height: 80vh;
-    margin: 2% auto 0 auto;
+    margin:2% auto auto auto;
+    display: flex;
+    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
+    url('../../../../assets/img/descargar.jpg');
+    background-size: cover;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
+    animation-name: login;
+    animation-duration: 2s;
+    position: relative;
+}
+.image{
+    flex-grow: 1;
+    max-width: 50%;
+    font-size: 0.8em;
+    margin: auto;
+}
+
+.form{
+    flex-grow: 1;
     padding: 10%;
-    border-radius: 10%;
+    max-width: 50%;
+
+    background: rgba(230, 175, 46, 0.8);
+    font-size: 1em;
+    margin: auto
+}
+.form h1{
+    font-size: 6em;
+}
+.image h1{
+    vertical-align: middle;
+    font-size: 6em;
+    text-align: center;
+    line-height: 2em;
+    overflow: hidden;
+}
+table{
+    width: 80%;
+    border-spacing: 2em;
+    text-align: center;
+}
+.formulario{
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+}
+
+
+@keyframes login{
+    0%   {left:800px; top: 800px;}
+
+    100% {left:0px; top: 0px;}
+}
+
+@media (max-width: 910px) {
+    .containerForm{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin:0;
+    }
+    .image{
+        margin: 0;
+        max-width: 100%;
+        max-height: 20vh;
+
+    }
+    .image h1{
+        font-size: 4em;
+        line-height: 1em;
+    }
+
+    .form{
+        margin: 0;
+        max-width: 100%;
+        
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+    
 }

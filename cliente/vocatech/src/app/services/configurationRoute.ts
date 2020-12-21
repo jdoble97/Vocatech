@@ -1,4 +1,4 @@
 export class ConfigurationRouteService{
-    public static url: string = "http://localhost:7777/api"
+    public static url: string = " https://vocatech.loca.lt/api"
 }
 //https://voca.local.lt/api

@@ -17,7 +17,7 @@ export class FlashcardsComponent implements OnInit {
   constructor(private barajasService: BarajaService, private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.barajasService.getBrajas(this.userService.getToken(), '/barajas').subscribe(barajas => {
+    this.barajasService.selectBarajas(this.userService.getToken()).subscribe(barajas => {
       this.barajas = <Baraja[]>barajas['data'];
     })
   }
