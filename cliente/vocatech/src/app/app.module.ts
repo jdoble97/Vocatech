@@ -30,7 +30,8 @@ import { GameComponent } from './component/logueado/game/game.component';
 import { LogoutComponent } from './component/logueado/logout/logout.component';
 import { UserService } from './services/user.service';
 import { CardsComponent } from './component/logueado/cards/cards.component';
-
+import { PresentationLetterComponent } from './component/nologueado/about/presentation-letter/presentation-letter.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CardsComponent } from './component/logueado/cards/cards.component';
     ErrorComponent,
     GameComponent,
     LogoutComponent,
-    CardsComponent
+    CardsComponent,
+    PresentationLetterComponent
   ],
   imports: [
     BrowserModule,

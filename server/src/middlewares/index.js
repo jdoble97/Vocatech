@@ -56,4 +56,5 @@ module.exports = {
         res.locals.user = user;
         next();
     }
+
 }

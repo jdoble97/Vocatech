@@ -1,4 +1,6 @@
 .footer {
     height:10vh;
-    background-color: darkgray;
+    background-color: lightblue;
+    position:sticky;
+    top:100%;
 }

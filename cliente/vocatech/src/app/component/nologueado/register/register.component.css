@@ -1,0 +1,24 @@
+.containerForm{
+    background-image: url("../../../../img/Background.png");
+    height: 60vh;
+    max-width: 60vw;
+    background-size: 100%;
+    
+}
+.formulario{
+    position: absolute;
+    left:55vw;
+    top:10vh;
+}
+
+.saludo{
+    text-align: center;
+    font-family: comic sans-serif;
+    font-size: 3em;
+    position:absolute;
+    left:22.5vw;
+    top:25vh;
+}
+.error{
+    color:white;
+}
