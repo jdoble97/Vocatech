@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "vocatech"
+  "defaultProject": "vocatech",
+  "cli": {
+    "analytics": "36c51d07-3ce8-4c02-854a-283e5589e25a"
+  }
 }
