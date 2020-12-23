@@ -1,4 +1,5 @@
 .containerForm{
+<<<<<<< HEAD
     background-image: url("../../../../img/Background.png");
     height: 100vh;
     max-width: 100vw;
@@ -21,4 +22,7 @@
 }
 .error{
     color:white;
+=======
+    background-color: green;
+>>>>>>> ece7be0d0e8ab82f552309d55cc7383cb22d9061
 }
