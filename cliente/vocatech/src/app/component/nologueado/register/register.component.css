@@ -1,11 +1,11 @@
 .containerForm{
     background-image: url("../../../../img/Background.png");
-    height: 60vh;
-    max-width: 60vw;
+    height: 100vh;
+    max-width: 100vw;
     background-size: 100%;
     
 }
-.formulario{
+.formularioRegistro{
     position: absolute;
     left:55vw;
     top:10vh;
@@ -14,9 +14,9 @@
 .saludo{
     text-align: center;
     font-family: comic sans-serif;
-    font-size: 3em;
+    font-size: 4em;
     position:absolute;
-    left:22.5vw;
+    left:8vw;
     top:25vh;
 }
 .error{
