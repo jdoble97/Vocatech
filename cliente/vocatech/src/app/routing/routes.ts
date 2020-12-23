@@ -18,5 +18,5 @@ export const routes: Routes = [
     {path:'about', component: AboutComponent},
     {path: 'game', component: GameComponent, canActivate: [UserGuard]},
     {path: '', component: LoginComponent},
-    {path: '**',component: ErrorComponent}
+    {path: '**', redirectTo:'', component:LoginComponent}
 ]

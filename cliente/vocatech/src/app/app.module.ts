@@ -32,6 +32,7 @@ import { UserService } from './services/user.service';
 import { CardsComponent } from './component/logueado/cards/cards.component';
 import { PresentationLetterComponent } from './component/nologueado/about/presentation-letter/presentation-letter.component';
 import { MatCardModule } from '@angular/material/card';
+import { MenuBeforeLoginComponent } from './component/nologueado/menu-before-login/menu-before-login.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MatCardModule } from '@angular/material/card';
     GameComponent,
     LogoutComponent,
     CardsComponent,
-    PresentationLetterComponent
+    PresentationLetterComponent,
+    MenuBeforeLoginComponent
   ],
   imports: [
     BrowserModule,

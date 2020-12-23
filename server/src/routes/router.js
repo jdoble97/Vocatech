@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const controllers = require('../controllers/controllers');
 const middleware = require('../middlewares/index')
+const path = require('path')
 //routes.get('/', controllers.homeController);
 //Enviar un json {username, email, pass}
 
@@ -26,5 +27,10 @@ routes.get('/api/cartas/:id',middleware.isAuth, controllers.selectCartasControll
 //Actualizar una carta de una baraja
 routes.put('/api/carta', middleware.isAuth, controllers.updateCartaController);
 routes.delete('/api/carta/:id',middleware.isAuth, controllers.deleteCartaController);
+routes.get('*',(req,res)=>{
+    let ruta = path.join(__dirname, "../../vocatech/index.html");
+    console.log(ruta)
+    res.sendFile(ruta);
+})
 
 module.exports = routes;
