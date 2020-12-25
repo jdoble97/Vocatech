@@ -10,6 +10,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 
 
+
 const material = [MatFormFieldModule,MatInputModule, MatButtonModule, MatTabsModule, MatDialogModule,MatButtonModule,MatCardModule]
 
 @NgModule({

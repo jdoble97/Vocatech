@@ -1,6 +1,48 @@
-.barajas {
-    background-color: blanchedalmond;
-    border: solid 1px black;
-    margin: 5px;
-    width: 25%;
+.flashcards{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 2em 0;
+}
+.search{
+    flex: 2 1 content;
+
+}
+.decksContainer{
+    flex: 9 1 100%;
+    background-color: blue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.decksContainer > *{
+    flex: 0 1 30%;
+}
+
+.pagination{
+    flex: 2 1 auto;
+    background-color: green;
+}
+
+form{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.mat-form-field{
+    width: 30%;
+}
+button{
+    margin-left: 1em;
+}
+@media only screen and (max-width: 700px){
+    form{
+        flex-direction: column;
+    }
+    .mat-form-field{
+        width: 100%;
+    }
+    button{
+        margin: 0 auto;
+    }
 }

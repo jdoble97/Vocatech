@@ -1,7 +1,9 @@
-<app-contenedor *ngIf=" isLogin ; else loguearse " ></app-contenedor>
-<ng-template #loguearse>
-    <app-entrar></app-entrar>
-</ng-template>
+<div>
+    <app-contenedor *ngIf=" isLogin ; else loguearse " ></app-contenedor>
+    <ng-template #loguearse>
+        <app-menu-before-login></app-menu-before-login>
+    </ng-template>
+</div>
 <div class="container">
     <router-outlet></router-outlet>
 </div>
