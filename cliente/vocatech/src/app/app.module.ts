@@ -34,6 +34,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MenuBeforeLoginComponent } from './component/nologueado/menu-before-login/menu-before-login.component';
 import { NavbarMobileComponent } from './component/logueado/navbar-mobile/navbar-mobile.component';
 import { DeckComponent } from './component/logueado/deck/deck.component';
+import { FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { DeckComponent } from './component/logueado/deck/deck.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [AuthenticationService, UserService],
   bootstrap: [AppComponent]

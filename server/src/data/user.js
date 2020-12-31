@@ -5,21 +5,19 @@ module.exports = {
         return new Promise((resolve, reject) => {
             pool.getConnection()
                 .then(conn => {
-        
-                    console.log('DENTRO', conn.threadId, " CONEXIONES ACTIVAS", pool.activeConnections())
-                    let miQuery = 'INSERT INTO usuarios VALUES(?, ?, ?)'
-                    conn.query(miQuery, [user['email'], user['pass'], user['username']])
-                    .then(row => {
-                        resolve ({ status: true, message: 'Registrado exitosamente' });
-                    })
-                    .catch(err => {
-                        reject ({ status: false, message: 'Email ya registrado' });
-                    })
+                    let miQuery = 'INSERT INTO user (EMAIL, Name, Pass) VALUES(?, ?, ?)'
+                    conn.query(miQuery, [user['email'], user['name'], user['pass']])
+                        .then(row => {
+                            resolve({ status: true, message: 'Registrado exitosamente' });
+                        })
+                        .catch(err => {
+                            reject({ status: false, message: 'Correo ya registrado' });
+                        })
                     conn.release();
                 })
                 .catch(err => {
                     console.log('Error por no cerrar conexion')
-                    reject ({ status: false, message: 'Erronmr de conexion' })
+                    reject({ status: false, message: 'Erronmr de conexion' })
                 })
         })
     },
@@ -27,14 +25,13 @@ module.exports = {
         return new Promise((resolve, reject) => {
             pool.getConnection()
                 .then(conn => {
-                    let myQuery = "SELECT email, pass FROM usuarios WHERE email=?";
-
+                    let myQuery = "SELECT EMAIL, Pass FROM user WHERE EMAIL=?";
                     conn.query(myQuery, [user.email])
                         .then(row => {
-                            resolve(row[0])
+                            resolve({ status: true, data: row[0] })
                         })
                         .catch(err => {
-                            reject({ status: false, message: 'Error en el usuario' });
+                            reject({ status: false, message: 'Error query' });
                         })
                     conn.release();
                 })

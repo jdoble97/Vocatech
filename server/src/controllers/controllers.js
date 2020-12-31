@@ -3,7 +3,6 @@ const userDB = require('../data/user');
 const barajaDB = require('../data/baraja');
 const cartasDB = require('../data/carta');
 const security = require('../security/security');
-const baraja = require('../data/baraja');
 
 
 module.exports = {
@@ -13,31 +12,37 @@ module.exports = {
 
     signUpController: async (req, res) => {
         let user = res.locals.user;
-        let hash = await security.encryptPass(user.pass);
-        if(!hash.status){
-            return res.status(500).json({status: false, message: 'Error al encriptar la contraseña'})
-        }
-        user.pass = hash.hash;
-        userDB.insertUser(user)
-            .then(respuesta=>{
-                res.status(200).json({status: true, token:security.createToken(user.email), email: user.email});
+        security.encryptPass(user.pass)
+            .then(response=>{
+                user.pass = response.hash;
+                console.log(user.pass)
+                userDB.insertUser(user)
+                    .then(result=>{
+                        return res.status(200).json({status: true, token: security.createToken(user.email), email: user.email});
+                    })
+                    .catch(err=>{
+                        return res.status(400).json(err)
+                    });
             })
             .catch(err=>{
-                res.json(err);
-            })
+                return res.status(400).json(err);
+            });
     },
 
-    loginController: async (req, res) => {
-        let userFromDB = await userDB.makeLogin(res.locals.user);
-        if (!userFromDB) {
-            return res.status(200).json({ status: false, message: 'Email incorrecto' })
-        }
-        console.log('DB->', userFromDB);
-        let matchPass = await security.decryptPass(res.locals.user.pass, userFromDB.pass);
-        if(!matchPass){
-            return res.status(200).json({status: false, message: 'Contraseña incorrecta'});
-        }
-        return res.status(200).json({status: true, token: security.createToken(userFromDB.email), email: userFromDB.email})
+    loginController: (req, res) => {
+        userDB.makeLogin(res.locals.user)
+            .then(user=>{
+                if(!user.data){
+                    return res.status(200).json({status: false, message: "Email no registrado"});
+                }
+                security.decryptPass(res.locals.user.pass, user.data.Pass)
+                    .then(match=>{
+                        if(match){
+                            return res.status(200).json({status: true, token: security.createToken(res.locals.user.email), email: res.locals.user.email})
+                        }
+                        return res.status(200).json({status: false, message: "Contraseña incorrecta"})
+                    })
+            })
     },
     //Baraja
     insertBarajaController: (req, res)=>{
@@ -52,9 +57,9 @@ module.exports = {
     },
 
     selectBarajasController: (req,res)=>{
-        barajaDB.selectBarajas(res.locals.user)
-            .then(r=>{
-                return res.status(200).json(r)
+        barajaDB.selectDecks({email: res.locals.user, id: req.params.id})
+            .then(responses=>{
+                return res.status(200).json(responses)
             })
             .catch(err=>{
                 return res.json(err)
@@ -79,6 +84,16 @@ module.exports = {
             .catch(err=>{
                 return res.status(400).json(err);
             })
+    },
+
+    getNumberDecks: (req, res)=>{
+        barajaDB.getNumberDecks(res.locals.user)
+            .then(result=>{
+                return res.status(200).json(result)
+            })
+            .catch(err=>{
+                return res.status(200).json(err)
+            });
     },
 
     //Carta

@@ -20,33 +20,34 @@ module.exports = {
         try {
             const payload = jwt.decode(myToken, SECRET_TOKEN);
             if (payload.exp <= moment().unix()) {
-                return { status: false, message: 'Token caducado'}
+                return { status: false, message: 'Token caducado' }
             }
             return payload.sub;
         } catch (err) {
-            return {status: false, message: 'El token ha sido modificado'}
+            return { status: false, message: 'El token ha sido modificado' }
         }
 
     },
 
     //Contraseña
     encryptPass: (pass) => {
-        return bcrypt.hash(pass, SALT_ROUNDS)
-            .then(passHashed=>{
-                return {status: true, hash: passHashed};
-            })
-            .catch(err=>{
-                return {status: false, message: 'Error al encriptar la contraseña'}
-            })
+        return new Promise((resolve, reject) => {
+            bcrypt.hash(pass, SALT_ROUNDS)
+                .then(passHashed => {
+                    resolve({ status: true, hash: passHashed });
+                })
+                .catch(err => {
+                    reject({ status: false, message: 'Error al encriptar la contraseña' });
+                })
+        })
     },
-
     decryptPass: (passPlain, passHashed) => {
-        return bcrypt.compare(passPlain, passHashed)
-            .then(match => {
-                if (match) {
-                    return true;
-                }
-                return false;
-            });
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(passPlain, passHashed)
+                .then(match => {
+                    resolve(match);
+                })
+                .catch(err => reject(err));
+        })
     }
 }
