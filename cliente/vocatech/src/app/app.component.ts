@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import {AuthenticationService} from './services/authentication.service';
 import { UserService } from './services/user.service';
 
@@ -11,7 +12,8 @@ export class AppComponent implements OnInit{
   title = 'vocatech';
   isLogin: boolean;
   
-  constructor(private authServices: AuthenticationService, private userService: UserService){}
+  constructor(private authServices: AuthenticationService, private userService: UserService ){
+  }
 
   ngOnInit(){
     this.isLogin = this.userService.checkInit();
@@ -20,5 +22,6 @@ export class AppComponent implements OnInit{
         this.isLogin = state
       }
     });
+
   }
 }

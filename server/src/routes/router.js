@@ -14,9 +14,10 @@ routes.get('/api/check-token',middleware.checkToken);
 //BARAJAS
 ////////////
 routes.post('/api/baraja',middleware.isAuth, controllers.insertBarajaController);
-routes.get('/api/barajas', middleware.isAuth,controllers.selectBarajasController);
+routes.get('/api/barajas/:id', middleware.isAuth,controllers.selectBarajasController);
 routes.put('/api/baraja', middleware.isAuth, controllers.updateBarajaController);
 routes.delete('/api/baraja/:id', middleware.isAuth, controllers.deleteBarajaController);
+routes.get('/api/number-decks',middleware.isAuth, controllers.getNumberDecks);
 
 ////////////
 //CARTAS

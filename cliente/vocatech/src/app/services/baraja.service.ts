@@ -8,6 +8,7 @@ import { ConfigurationRouteService} from './configurationRoute';
 })
 export class BarajaService {
 
+
   constructor(private http: HttpClient) { }
 
   //Create
@@ -19,9 +20,9 @@ export class BarajaService {
   }
 
   //Read
-  selectBarajas(token: string){
+  selectBarajas(token: string, endpoint: string){
     let misheaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: `Bearer ${token}`});
-    return this.http.get(ConfigurationRouteService.url+`/barajas`,{headers: misheaders});
+    return this.http.get(endpoint,{headers: misheaders});
   }
 
   //Update
@@ -36,4 +37,6 @@ export class BarajaService {
   deleteBaraja(id: number, token: string){
     return this.http.delete(ConfigurationRouteService.url+`/baraja/${id}`)
   }
+
+  ////////
 }

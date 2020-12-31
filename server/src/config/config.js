@@ -3,7 +3,7 @@ const DB = {
     HOST: '127.0.0.1',
     USER : 'root',
     PASSWORD: '',
-    NAME: 'vocatech',
+    NAME: 'VOCATECH',
     SALT_ROUNDS: 10,
     SECRET_TOKEN: "proyectoFinal"
 };

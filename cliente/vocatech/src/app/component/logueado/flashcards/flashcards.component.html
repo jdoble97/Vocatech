@@ -1,24 +1,21 @@
 <div class="flashcards">
     <div class="search">
-        <form novalidate [formGroup]="searchForm" (ngSubmit)="searchDeck()" >
+        <form novalidate [formGroup]="searchForm" (ngSubmit)="searchDeck()">
             <mat-form-field appearance="outline">
                 <mat-label>Buscar baraja</mat-label>
                 <input matInput type="text" placeholder="Nombre de baraja" formControlName="nameDeck">
                 <mat-hint>Escribe al menos 3 caracteres para buscar</mat-hint>
             </mat-form-field>
-            <button mat-raised-button color="primary" type="submit" [disabled]="searchForm.invalid" >Buscar</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="searchForm.invalid">Buscar</button>
         </form>
     </div>
     <div class="decksContainer">
-        <app-deck></app-deck>
-        <app-deck></app-deck>
-        <app-deck></app-deck>
-        <app-deck></app-deck>
-        <app-deck></app-deck>
-        <app-deck></app-deck>
+        <ng-container *ngIf="barajas.length">
+            <app-deck *ngFor="let deck of barajas" [deck]="deck"></app-deck>
+        </ng-container>
     </div>
     <div class="pagination">
-        Paginación
+        <button mat-raised-button color="accent" class="moreDecks" (click)="getDecks()">Accent</button>
     </div>
 </div>
 

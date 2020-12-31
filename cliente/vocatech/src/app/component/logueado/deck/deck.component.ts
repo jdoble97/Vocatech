@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Baraja } from 'src/app/shared/models/baraja';
 
 @Component({
   selector: 'app-deck',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./deck.component.css']
 })
 export class DeckComponent implements OnInit {
-
+  @Input() public deck: Baraja;
   constructor() { }
 
   ngOnInit(): void {
