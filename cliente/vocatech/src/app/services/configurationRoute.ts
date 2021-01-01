@@ -1,4 +1,4 @@
 export class ConfigurationRouteService{
-    public static url: string = " http://192.168.1.135:7777/api"
+    public static url: string = "http://localhost:8080/api"
 }
 //https://voca.local.lt/api

@@ -3,8 +3,9 @@
     padding: 1em;
     justify-content: space-evenly;
     background-color: whitesmoke;
+    
+    
 }
-
 .mat-card, .mat-card>*{
     
     background-color: white;
@@ -17,9 +18,48 @@
 .mat-card{
     max-width: 20%;
     border: 10px solid lightgray;
+    animation-name: presentation;
+    animation-duration: 2s;
 }
 
 .presentation-letter{
     color:black;
     flex-grow: 1;
 }    
+.mat-card-content{
+    max-width: 20%;
+}
+
+@keyframes presentation{
+    0%   { top: 800px;}
+
+    100% {right:0px; top: 0px;}
+    }
+
+
+@media only screen and (max-width: 600px) {
+
+        
+        .padrre{
+            background-color: white;
+            flex-direction:column;
+            height: 80em;
+            position: relative;
+            left:40px;
+            animation-name: presentation;
+            animation-duration: 2s;
+        }
+        
+        .presentation-letter{
+            position: relative;
+            
+            max-width: 80%;
+            width: 100%;
+            flex:1;
+        }
+        .mat-card-content{
+            max-width: 100%;
+        }
+  }
+
+  
