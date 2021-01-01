@@ -1,11 +1,9 @@
-.containerForm{
-    background-color: grey;
-    max-width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.formulario{
-    width: 75%;
-    margin-right: auto;
-    margin-left: auto;
+.container{
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }

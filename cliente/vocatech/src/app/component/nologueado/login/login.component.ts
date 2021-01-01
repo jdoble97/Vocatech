@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/models/user';
+//
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 @Component({
   selector: 'app-login',
@@ -15,8 +17,6 @@ export class LoginComponent implements OnInit {
   @ViewChild('formLogin') formLogin;
   //El nombre del FormGroup debe coincidir con el del template
   login: FormGroup;
-  public messageError: boolean;
-  message: string;
 
   constructor(private http: AuthenticationService, private formBuilder: FormBuilder,
     private router: Router, private userService: UserService) { }
@@ -61,7 +61,14 @@ export class LoginComponent implements OnInit {
       pass: ''
     });
     this.formLogin.resetForm();
-    this.message = message;
-    this.messageError = true;
+    this.errorModal(message);
+  }
+
+  errorModal(message: string){
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: message
+    })
   }
 }

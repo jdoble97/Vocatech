@@ -1,6 +1,5 @@
 .footer {
+    width: 100%;
     height:10vh;
     background-color: lightblue;
-    position:sticky;
-    top:100%;
 }

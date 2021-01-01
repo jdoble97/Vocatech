@@ -23,7 +23,6 @@ import { MaterialModule } from './material.module';
 //Configurar para usar formulario reactivo
 import {ReactiveFormsModule} from '@angular/forms';
 import { NavbarDesktopComponent } from './component/logueado/navbar-desktop/navbar-desktop.component';
-import { EntrarComponent } from './component/nologueado/entrar/entrar.component';
 import { ContenedorComponent } from './component/logueado/contenedor/contenedor.component';
 import { ErrorComponent } from './component/error/error.component';
 import { GameComponent } from './component/logueado/game/game.component';
@@ -32,6 +31,10 @@ import { UserService } from './services/user.service';
 import { CardsComponent } from './component/logueado/cards/cards.component';
 import { PresentationLetterComponent } from './component/nologueado/about/presentation-letter/presentation-letter.component';
 import { MatCardModule } from '@angular/material/card';
+import { MenuBeforeLoginComponent } from './component/nologueado/menu-before-login/menu-before-login.component';
+import { NavbarMobileComponent } from './component/logueado/navbar-mobile/navbar-mobile.component';
+import { DeckComponent } from './component/logueado/deck/deck.component';
+import { FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,13 +49,15 @@ import { MatCardModule } from '@angular/material/card';
     AboutComponent,
     LoginComponent,
     NavbarDesktopComponent,
-    EntrarComponent,
     ContenedorComponent,
     ErrorComponent,
     GameComponent,
     LogoutComponent,
     CardsComponent,
-    PresentationLetterComponent
+    PresentationLetterComponent,
+    MenuBeforeLoginComponent,
+    NavbarMobileComponent,
+    DeckComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,8 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [AuthenticationService, UserService],
   bootstrap: [AppComponent]

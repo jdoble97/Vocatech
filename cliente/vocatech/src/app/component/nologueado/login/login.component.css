@@ -1,0 +1,55 @@
+.containerForm{
+    margin: 2em auto 0 auto;
+    background-color: saddlebrown;
+    min-width: 200px;
+    width: 70%;
+    display: flex;
+    background-image: linear-gradient(140deg, #AC80A0 25%, #89AAE6 50%, #3685B5 75%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: login;
+    animation-duration: 2s;
+    position: relative;
+    align-items: center;
+    height: 90vh;
+    border-radius: 5px;
+}
+
+.containerForm div{
+    text-align: center;
+}
+div.image h1{
+    font-size: 3em;
+    line-height: 1.6;
+}
+div.image{
+    flex:1;
+}
+div.form {
+    flex:1;
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+
+}
+
+@media only screen and (max-width: 700px){
+    .containerForm{
+        flex-direction: column;
+        font-size: 1em;
+    }
+    div.image h1{
+        font-size: 3em;
+    }
+    div.image{
+        flex:1;
+    }
+    div.form{
+        flex:2;
+    }
+}
+@keyframes login{
+    0%   {left:800px; top: 800px;}
+
+    100% {left:0px; top: 0px;}
+}

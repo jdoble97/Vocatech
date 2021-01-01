@@ -5,7 +5,6 @@ module.exports = {
         try{
             let user = res.locals.user;
             let validation = [];
-            console.log("Validacion",res.locals.user);
             validation[0] = validator.validateUsername(user.username);
             validation[1]= validator.validateEmail(user.email);
             if(validation[0].ok && validation[1].ok){
@@ -25,12 +24,12 @@ module.exports = {
         if(token.message){
             return res.status(401).json(token)
         }
+        console.log('Token,',token)
         res.locals.user = token
         next();
     },
     checkToken: (req,res)=>{
         const token = validateToken(req.headers.authorization);
-        console.log("Forma del token: ",token)
         if(!token){
             return res.status(403).json({status: false, message: 'No hay token'})
         }
@@ -40,8 +39,8 @@ module.exports = {
         res.status(200).json({status: true, message: 'Token válido'});
     },
     checkUserRegister: (req, res, next)=>{
-        let user = {email: req.body.email, pass: req.body.pass, username: req.body.username};
-        if(!user.email || !user.pass || !user.username){
+        let user = {email: req.body.email, pass: req.body.pass, name: req.body.name};
+        if(!user.email || !user.pass || !user.name){
             return res.status(400).json({status: false, message: 'Falta alguno de los campos'});
         }
         res.locals.user = user;
