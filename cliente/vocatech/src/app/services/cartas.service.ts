@@ -21,9 +21,8 @@ export class CartasService {
   }
 
   //Read
-  getCartas(idBaraja: number, token: string){
-    let miUrl = `${ConfigurationRouteService.url}/cartas/${idBaraja}`;
-    return this.http.get(miUrl, {headers: {
+  getCartas(idBaraja: number, token: string, endpoint: string){
+    return this.http.get(endpoint, {headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     }});

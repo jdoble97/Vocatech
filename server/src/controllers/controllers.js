@@ -10,19 +10,26 @@ module.exports = {
         res.sendFile(path.join(__dirname + '/../public/index.html'))
     },
 
-    signUpController: async (req, res) => {
+    signUpController: (req, res) => {
+        console.log('Dentro del controller')
         let user = res.locals.user;
         security.encryptPass(user.pass)
             .then(response=>{
-                user.pass = response.hash;
-                console.log(user.pass)
-                userDB.insertUser(user)
-                    .then(result=>{
-                        return res.status(200).json({status: true, token: security.createToken(user.email), email: user.email});
-                    })
-                    .catch(err=>{
-                        return res.status(400).json(err)
-                    });
+                //REGISTER
+                console.log('Dentro de encrypt', response)
+                if(response.status){
+                    user.pass = response.hash
+                    userDB.insertUser(user)
+                        .then(state=>{
+                            console.log('Dentro del inserUser', state)
+                            return res.status(200).json({status: true, token: security.createToken(user.email)});
+                        })
+                        .catch(err=>{
+                            console.log("Error", err)
+                            return res.status(200).json(err);
+                        });
+                }
+                return res.status()
             })
             .catch(err=>{
                 return res.status(400).json(err);
@@ -100,7 +107,7 @@ module.exports = {
     selectCartasController: (req,res)=>{
         //Name's parameter
         let  id = req.params.id
-        cartasDB.selectCartas(id)
+        cartasDB.selectCards(id)
             .then(registros=>{
                 return res.status(200).json(registros);
             })

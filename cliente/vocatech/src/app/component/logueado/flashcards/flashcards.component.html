@@ -10,29 +10,13 @@
         </form>
     </div>
     <div class="decksContainer">
-        <ng-container *ngIf="barajas.length">
-            <app-deck *ngFor="let deck of barajas" [deck]="deck"></app-deck>
+        <ng-container *ngIf="barajas.length==0; else ReadyDecks">
         </ng-container>
+        <ng-template #ReadyDecks>
+            <app-deck *ngFor="let deck of barajas" [deck]="deck"></app-deck>
+        </ng-template>
     </div>
-    <div class="pagination">
-        <button mat-raised-button color="accent" class="moreDecks" (click)="getDecks()">Accent</button>
+    <div *ngIf="barajas.length>0" class="pagination">
+        <button mat-raised-button color="accent" class="moreDecks" (click)="getDecks()">Cargar más</button>
     </div>
 </div>
-
-
-
-
-
-
-
-
-<!-- <p>EN ESTE COMPONENTE SE CARGARAN LAS BARAJAS</p>
-<div *ngIf="barajas.length > 0">
-    <h1>Si hay barajas se ve este componente</h1>
-    <div *ngFor="let baraja of barajas" class="barajas">
-        <p>ID: {{baraja.ID}}</p>
-        <p>Email: {{baraja.email}}</p>
-        <p>Nombre: {{baraja.nombre}}</p>
-        <button (click)="seeDeckOfCards(baraja.ID, baraja.nombre)" >Boton para ver las cartas</button>
-    </div>
-</div> -->

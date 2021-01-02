@@ -8,6 +8,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/models/user';
 import { Router } from '@angular/router';
+import { ConfigurationRouteService } from 'src/app/services/configurationRoute';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -18,9 +21,6 @@ export class RegisterComponent implements OnInit{
   @ViewChild('fform') formTemplate;
 
   registro: FormGroup;
-  public messageError: boolean;
-  message: string;
-  private user: User;
   constructor(private http: AuthenticationService, private formBuilder: FormBuilder, private userService: UserService,
     private router: Router) { }
 
@@ -31,47 +31,54 @@ export class RegisterComponent implements OnInit{
 
   createForm(){
     this.registro = this.formBuilder.group({
-      username: ['',Validators.required],
-      email: ['',[Validators.required, Validators.email]],
-      pass: ['', [Validators.required,Validators.minLength(6)]]
+      Name: ['',Validators.required],
+      EMAIL: ['',[Validators.required, Validators.email]],
+      Pass: ['', [Validators.required,Validators.minLength(6)]]
     });
   }
 
   onSubmit(){
-    let usuario = JSON.stringify(this.registro.value);
+    let usuario = this.registro.value;
+    console.log('Objeto ',usuario['Pass']);
     this.register(usuario);
   }
 
-  register(user): void{
-    this.http.getTokenFromServer(user).subscribe(resp=>{
+  register(user:any): void{
+    const url = ConfigurationRouteService.url+'/signup'
+    this.http.getTokenFromServer(user, url).subscribe(resp=>{
+      console.log(resp)
       if(resp['status']){
         this.onSubmitSuccess();
+        let userRegistered: User = {status: true, email: user['EMAIL'], name: user['Name'], pass: user['Pass']};
         this.userService.setUser(<User>resp);
         this.userService.sendState(true);
         this.userService.setUserInStorage();
         this.router.navigate(['home']);
       }else{
-        this.onSubmitFail(resp['message']);
+        this.onSubmitFail(resp['message'])
       }
-    });
+    })
   }
   onSubmitSuccess(): void{
     this.registro.reset({
-      username: '',
-      email: '',
-      pass: ''
+      Name: '',
+      EMAIL: '',
+      Pass: ''
     });
     this.formTemplate.resetForm();
     console.log('Exito')
   }
   onSubmitFail(message: string): void{
     this.registro.reset({
-      username: '',
-      email: '',
-      pass: ''
+      Name: '',
+      EMAIL: '',
+      Pass: ''
     });
     this.formTemplate.resetForm();
-    this.message = message;
-    this.messageError = true;
+    Swal.fire({
+      icon: 'error',
+      title: 'Aviso',
+      text: message
+    });
   }
 }

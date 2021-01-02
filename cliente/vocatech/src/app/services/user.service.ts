@@ -52,7 +52,7 @@ export class UserService {
   logoutUser() {
     localStorage.clear();
     this.observerLogin.next(false);
-    this.router.navigate(['/'])
+    this.router.navigate(['/login'])
   }
   getToken() {
     return this.user.token;
