@@ -11,12 +11,13 @@ import { UserGuard } from '../auth/user.guard';
 
 export const routes: Routes = [
     {path:'home', component:HomeComponent, canActivate: [UserGuard]},
+    {path:'', redirectTo:'/home', pathMatch:'full'},
     {path:'addflashcard', component:AddflashcardComponent, canActivate: [UserGuard]},
     {path:'flashcards', component: FlashcardsComponent, canActivate: [UserGuard]},
     {path: 'register', component: RegisterComponent},
     {path:'login', component: LoginComponent},
     {path:'about', component: AboutComponent},
     {path: 'game', component: GameComponent, canActivate: [UserGuard]},
-    {path: '', component: LoginComponent},
-    {path: '**', redirectTo:'/home'}
+    {path: 'login', component: LoginComponent},
+    {path: '**', redirectTo:'/home', pathMatch:'full'}
 ]

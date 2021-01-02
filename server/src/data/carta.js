@@ -1,11 +1,11 @@
 const pool = require('../config/conexion');
 
 module.exports = {
-    selectCartas: (idBaraja)=>{
+    selectCards: (idBaraja)=>{
         return new Promise((resolve, reject)=>{
             pool.getConnection()
                 .then(conn=>{
-                    let miQuery = `SELECT * FROM cartas WHERE id_baraja=?`;
+                    let miQuery = `SELECT * FROM card WHERE FK_DeckID=?`;
                     conn.query(miQuery,[idBaraja])
                         .then(row=>{
                             resolve({status: true, data: row})
@@ -24,8 +24,8 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             pool.getConnection()
                 .then(conn=>{
-                    let miQuery = `INSERT INTO cartas VALUES(null, ?, ?, ?, ?)`;
-                    conn.query(miQuery,[carta.id_baraja, carta.nombreCastellano, carta.nombreIngles, carta.aprendido])
+                    let miQuery = `INSERT INTO card VALUES(null, ?, ?, ?, ?)`;
+                    conn.query(miQuery,[carta.FK_DeckID, carta.nombreCastellano, carta.nombreIngles, carta.aprendido])
                         .then(row=>{
                             resolve({status: true, insertId: row.insertId})
                         })
@@ -44,8 +44,8 @@ module.exports = {
         return new Promise((resolve, reject)=>{
             pool.getConnection()
                 .then(conn=>{
-                    let miQuery = 'UPDATE cartas SET id_baraja=?, nombreCastellano=?, nombreIngles=?, aprendido=? WHERE ID=?';
-                    conn.query(miQuery, [carta.id_baraja, carta.nombreCastellano, carta.nombreIngles, carta.aprendido, carta.ID])
+                    let miQuery = 'UPDATE card SET FK_DeckID=?, nombreCastellano=?, nombreIngles=?, aprendido=? WHERE ID=?';
+                    conn.query(miQuery, [carta.FK_DeckID, carta.nombreCastellano, carta.nombreIngles, carta.aprendido, carta.ID])
                         .then(row=>{
                             resolve({status: true, message: 'Carta actualizada'});
                         })
@@ -64,7 +64,7 @@ module.exports = {
         return new Promise((resolve, reject)=>{
             pool.getConnection()
                 .then(conn=>{
-                    let miQuery = 'DELETE FROM cartas WHERE ID=?';
+                    let miQuery = 'DELETE FROM card WHERE ID=?';
                     conn.query(miQuery, [id])
                         .then(row=>{
                             resolve({status: true, message: 'Carta eliminada'});

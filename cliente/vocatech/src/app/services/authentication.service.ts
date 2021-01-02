@@ -10,10 +10,9 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  getTokenFromServer(user){
+  getTokenFromServer(user, endpoint: string){
     let misHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-    const url = ConfigurationRouteService.url+'/signup'
-    return this.http.post(url, user,{headers: misHeaders});
+    return this.http.post(endpoint, user,{headers: misHeaders});
   }
 
   sendCredentials(user) {

@@ -39,10 +39,11 @@ module.exports = {
         res.status(200).json({status: true, message: 'Token válido'});
     },
     checkUserRegister: (req, res, next)=>{
-        let user = {email: req.body.email, pass: req.body.pass, name: req.body.name};
+        let user = {email: req.body.EMAIL, pass: req.body.Pass, name: req.body.Name};
         if(!user.email || !user.pass || !user.name){
             return res.status(400).json({status: false, message: 'Falta alguno de los campos'});
         }
+        console.log("Registrando", user)
         res.locals.user = user;
         next();
     },
