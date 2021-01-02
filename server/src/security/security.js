@@ -34,6 +34,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             bcrypt.hash(pass, SALT_ROUNDS)
                 .then(passHashed => {
+                    console.log("hash",passHashed);
                     resolve({ status: true, hash: passHashed });
                 })
                 .catch(err => {

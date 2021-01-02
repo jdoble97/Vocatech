@@ -1,3 +1,99 @@
+/*
 .containerForm{
-    background-color: green;
+    background-image: url("../../../../img/Background.png");
+    background-position: center;
+    left:200px;
+    height: 70vh;
+    max-width: 100vw;
+    background-size: 100%;
+    
+}
+.formularioRegistro{
+    position: absolute;
+    left:55vw;
+    top:10vh;
+}
+
+.saludo{
+    text-align: center;
+    font-family: comic sans-serif;
+    font-size: 2em;
+    position:relative;
+    right:30.5vw;
+    top:20vh;
+}
+.error{
+    color:white;
+}
+
+*/
+.containerForm{
+    display:flex;
+    justify-content: center;
+    height: 60%;
+    max-width: 100vw;
+    margin: 2em auto 0 auto;
+    background-color: saddlebrown;
+    min-width: 200px;
+    width: 50%;
+    display: flex;
+    background-image: linear-gradient(140deg, #8F00FF 25%, #89AAE6 50%, #dcb333 75%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: register;
+    animation-duration: 2s;
+    position: relative;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.formularioRegistro{
+    flex-grow: 1;
+    /*background-color:#dcb333;*/
+    position: relative;
+    top:12em;
+    left:2em;
+    height: 70vh;
+}
+.saludo{
+    position:relative;
+    top:8em;
+    left:2em;
+    font-size: 2.5em;
+}
+.containerSaludo{
+    height: 70vh;
+    flex-grow: 1;
+    /*background-color: #8F00FF;*/
+}
+
+@keyframes register{
+    0%   {right:800px; top: 800px;}
+
+    100% {right:0px; top: 0px;}
+}
+
+@media only screen and (max-width: 600px) {
+    .containerForm{
+        flex-direction:column;
+        height: 800px;
+        width: 300px;
+    }
+    .containerSaludo{
+        flex-grow: 1;
+    }
+    .saludo{
+        position: absolute;
+        top:15%;
+        font-size: 2em;
+        line-height: 1.3;   
+    }
+    .formularioRegistro{
+        height: 40%;
+        width: 65%;
+        position: relative;
+        top:-100px;
+        right:-100px;
+        flex-grow: 1;
+    }
+
 }

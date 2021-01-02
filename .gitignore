@@ -1,2 +1,4 @@
 server/node_modules/
 cliente/vocatech/node_modules/
+server/app.js
+cliente/vocatech/src/services/configurationRoute.ts
