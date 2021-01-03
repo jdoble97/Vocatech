@@ -27,7 +27,7 @@
     flex-grow: 1;
 }    
 .mat-card-content{
-    max-width: 20%;
+    max-width: 100%;
 }
 
 @keyframes presentation{
