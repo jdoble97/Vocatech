@@ -22,7 +22,7 @@ export class FlashcardsComponent implements OnInit {
 
   constructor(private barajasService: BarajaService, private userService: UserService,
     private fb:FormBuilder) { 
-      console.log("Las baarajas",this.barajas.length)
+      console.log("Las barajas",this.barajas.length)
       this.idLater = 0;
       this.urlDecks = ConfigurationRouteService.url+'/barajas/'+this.idLater;
     }

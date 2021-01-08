@@ -30,11 +30,12 @@ import { LogoutComponent } from './component/logueado/logout/logout.component';
 import { UserService } from './services/user.service';
 import { CardsComponent } from './component/logueado/cards/cards.component';
 import { PresentationLetterComponent } from './component/nologueado/about/presentation-letter/presentation-letter.component';
-import { MatCardModule } from '@angular/material/card';
 import { MenuBeforeLoginComponent } from './component/nologueado/menu-before-login/menu-before-login.component';
 import { NavbarMobileComponent } from './component/logueado/navbar-mobile/navbar-mobile.component';
 import { DeckComponent } from './component/logueado/deck/deck.component';
 import { FormsModule} from '@angular/forms';
+import { ModifyDeckComponent } from './component/logueado/modify-deck/modify-deck.component';
+import { EditDeckComponent } from './component/logueado/edit-deck/edit-deck.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { FormsModule} from '@angular/forms';
     PresentationLetterComponent,
     MenuBeforeLoginComponent,
     NavbarMobileComponent,
-    DeckComponent
+    DeckComponent,
+    ModifyDeckComponent,
+    EditDeckComponent,
   ],
   imports: [
     BrowserModule,

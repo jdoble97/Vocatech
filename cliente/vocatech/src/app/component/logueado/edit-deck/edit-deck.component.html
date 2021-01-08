@@ -1,0 +1,20 @@
+<div class="editDeck" *ngIf="deck">
+    <div class="deck">
+        <h1>{{deck.Name}}</h1>
+        <button mat-raised-button>Cambiar nombre de baraja</button>
+        <button mat-raised-button>Añadir carta</button>
+    </div>
+    <div class="cards">
+        <h1>Numero de cartas: {{numberCards}} </h1>
+        <table>
+            <tr>
+                <th>Palabra</th>
+                <th>Traduccion</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+        </table>
+    </div>
+</div>

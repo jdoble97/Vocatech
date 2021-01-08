@@ -1,0 +1,50 @@
+.editDeck {
+    display: flex;
+    height: 100vh;
+}
+
+.cards {
+    flex: 1 1 70%;
+    background-color: coral;
+}
+
+.deck {
+    flex: 1 1 30%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.deck>* {
+    flex: 1 1 100%;
+}
+
+.deck>button {
+    margin: 1em;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    text-align: center;
+}
+
+@media only screen and (max-width: 700px) {
+    .editDeck {
+        flex-direction: column;
+        min-width: 300px;
+    }
+    .deck {
+        height: max-content;
+        flex: 1 1 20%;
+    }
+    .cards {
+        flex: 1 1 80%
+    }
+}
+
+h1 {
+    text-align: center;
+}

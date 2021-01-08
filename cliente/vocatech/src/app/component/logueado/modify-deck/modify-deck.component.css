@@ -1,0 +1,53 @@
+* {
+    color: black
+}
+
+table {
+    width: 100%;
+}
+
+tr {
+    display: flex;
+}
+
+tr>* {
+    flex: 1 1 50%;
+}
+
+td, th {
+    text-align: left;
+    padding: 0.5em;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-of-type(1n+2):hover {
+    background-color: rgb(121, 113, 113);
+    cursor: pointer;
+}
+
+mat-dialog-actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.deleteButton{
+    background-color: rgb(187, 31, 31);
+    margin-right: 0.2em;
+}
+
+.editButton{
+    background-color: royalblue;
+}
+
+.buttons{
+    display: flex;
+}
+
+.buttons button {
+    flex: 1 1 50%;
+}
+

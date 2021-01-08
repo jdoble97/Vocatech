@@ -65,4 +65,7 @@ export class UserService {
       }
     });
   }
+  getUserCredentialsforPost(name: string){
+    return JSON.stringify({FK_Email: this.user.email, Name: name});
+  }
 }

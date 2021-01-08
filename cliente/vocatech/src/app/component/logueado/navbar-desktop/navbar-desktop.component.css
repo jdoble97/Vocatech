@@ -1,9 +1,4 @@
-.menu{
-    position: relative;
+#logout{
+    background-color: red;
 }
-.icono{
-    position: absolute;
-    right: 1px;
-    top: 1px;
-    bottom: 1px;
-}
+

@@ -8,6 +8,8 @@ import { LoginComponent } from '../component/nologueado/login/login.component';
 import { ErrorComponent } from '../component/error/error.component';
 import { GameComponent } from '../component/logueado/game/game.component';
 import { UserGuard } from '../auth/user.guard';
+import { ModifyDeckComponent } from '../component/logueado/modify-deck/modify-deck.component';
+import { EditDeckComponent } from '../component/logueado/edit-deck/edit-deck.component';
 
 export const routes: Routes = [
     {path:'home', component:HomeComponent, canActivate: [UserGuard]},
@@ -19,5 +21,7 @@ export const routes: Routes = [
     {path:'about', component: AboutComponent},
     {path: 'game', component: GameComponent, canActivate: [UserGuard]},
     {path: 'login', component: LoginComponent},
+    {path: 'modificar-baraja', component: ModifyDeckComponent, canActivate: [UserGuard]},
+    {path:'editar/:id', component: EditDeckComponent, canActivate: [UserGuard]},
     {path: '**', redirectTo:'/home', pathMatch:'full'}
 ]

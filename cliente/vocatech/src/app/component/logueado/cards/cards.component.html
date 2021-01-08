@@ -1,1 +1,37 @@
-<p>Definicion de las cartas</p>
+<h1 mat-dialog-title style="text-align: center;">{{deck.Name}}: </h1>
+
+<div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="cards">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="Palabra">
+        <th mat-header-cell *matHeaderCellDef> Palabra </th>
+        <td mat-cell *matCellDef="let element"> {{element.SpanishName}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="Traducción">
+        <th mat-header-cell *matHeaderCellDef> Traducción </th>
+        <td mat-cell *matCellDef="let element"> {{element.EnglishName}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Guardar">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? allToggle() : null"
+                        [checked]="Guardar.hasValue() && isAllSelected()"
+                        [indeterminate]="Guardar.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? Guardar.toggle(row) : null"
+                        [checked]="Guardar.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

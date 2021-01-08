@@ -18,6 +18,9 @@ routes.get('/api/barajas/:id', middleware.isAuth,controllers.selectBarajasContro
 routes.put('/api/baraja', middleware.isAuth, controllers.updateBarajaController);
 routes.delete('/api/baraja/:id', middleware.isAuth, controllers.deleteBarajaController);
 routes.get('/api/number-decks',middleware.isAuth, controllers.getNumberDecks);
+routes.get('/api/list-decks/:id', middleware.isAuth, controllers.listDecks)
+routes.get('/api/list-decks-before/:id', middleware.isAuth, controllers.listDecksBefore)
+routes.get('/api/baraja/:id', middleware.isAuth, controllers.selectDeckController)
 
 ////////////
 //CARTAS

@@ -14,3 +14,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 
 .active{
     background-color: purple;
 }
+.cardsModal {
+    background-color: rgb(182, 128, 236);
+    width: 80%;
+    display: flex;
+}
+.mat-dialog-container{
+    background-color: white;
+}
+.dialogModify{
+    width: 90vw;
+}
