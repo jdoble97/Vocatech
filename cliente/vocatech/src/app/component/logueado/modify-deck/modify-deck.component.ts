@@ -26,7 +26,6 @@ export class ModifyDeckComponent implements OnInit {
     this.deckService.getNumberDecks(this.userService.getToken())
       .subscribe(response => {
         if (response['status']) {
-          console.log('Nueva llamada')
           this.numberDecks = response['number']
           if (this.numberDecks > 0) {
             this.checkDecks();
@@ -41,12 +40,10 @@ export class ModifyDeckComponent implements OnInit {
       this.deckService.listDecks(ConfigurationRouteService.url + `/list-decks-before/${this.idTemporary}`, this.userService.getToken())
         .subscribe(response => {
           if (response['status']) {
-            console.log("Last", response)
             this.numberActual -= this.decks.length;
             this.decks = response['data'].reverse();
             this.idLast = this.decks[this.decks.length - 1]['ID'];
             this.idTemporary = this.decks[0]['ID'];
-            console.log('TAMAÑO', this.decks.length, this.decks);
           }
         });
     }
@@ -80,7 +77,6 @@ export class ModifyDeckComponent implements OnInit {
       })
   }
   delete(deckInfo) {
-    console.log(this.decks.indexOf(deckInfo))
     this.decks.splice(this.decks.indexOf(deckInfo), 1)
     this.deckService.deleteBaraja(ConfigurationRouteService.url + `/baraja/${deckInfo['ID']}`, this.userService.getToken())
       .subscribe(response => {
@@ -99,9 +95,7 @@ export class ModifyDeckComponent implements OnInit {
   checkDecks() {
     this.deckService.listDecks(ConfigurationRouteService.url + `/list-decks/0`, this.userService.getToken())
       .subscribe(response => {
-        console.log('DATOS DEL LIST-DECK', response)
-        if (response['status']) {
-          console.log('click before');
+        if (response['status'] && this.numberDecks>0) {
           this.decks = response['data'];
           this.numberActual = this.decks.length;
           this.numberTemporary = this.numberActual;
@@ -111,7 +105,6 @@ export class ModifyDeckComponent implements OnInit {
   }
 
   edit(deckInfo){
-    console.log(deckInfo);
     this.router.navigate(['/editar', deckInfo['ID']]);
   }
 }

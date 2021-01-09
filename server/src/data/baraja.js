@@ -5,7 +5,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             pool.getConnection()
                 .then(conn => {
-                    let miQuery = 'SELECT * FROM deck WHERE FK_Email=? AND ID>? LIMIT 9';
+                    let miQuery = 'SELECT * FROM deck WHERE FK_Email=? ORDER BY ID DESC LIMIT 12';
                     conn.query(miQuery, [reqClient.email, reqClient.id])
                         .then(row => {
                             resolve({ status: true, data: row });
@@ -20,6 +20,47 @@ module.exports = {
                 })
         })
     },
+    selectDecksByOrder: (deck) => {
+        return new Promise((resolve, reject) => {
+            pool.getConnection()
+                .then(conn => {
+                    let myQuery = 'SELECT * FROM deck WHERE FK_Email=? AND ID<? ORDER BY ID DESC LIMIT 12';
+                    conn.query(myQuery, [deck['FK_Email'], [deck['ID']]])
+                        .then(row => {
+                            resolve({ status: true, data: row })
+                        })
+                        .catch(err => {
+                            reject({ status: false, message: 'Error de query' })
+                        })
+                    conn.release();
+                })
+                .catch(err => {
+                    reject({ status: false, message: 'Error de conexión' })
+                })
+        })
+    },
+    selectDecksLast: (deck) => {
+
+        return new Promise((resolve, reject) => {
+            pool.getConnection()
+                .then(conn => {
+                    let myQuery = 'SELECT * FROM deck WHERE FK_Email=? AND ID>? LIMIT 12';
+                    conn.query(myQuery, [deck['FK_Email'], [deck['ID']]])
+                        .then(row => {
+                            resolve({ status: true, data: row })
+                        })
+                        .catch(err => {
+                            reject({ status: false, message: 'Error de query' })
+                        })
+                    conn.release();
+                })
+                .catch(err => {
+                    reject({ status: false, message: 'Error de conexión' })
+                })
+        })
+
+    },
+
     selectDeck: (id) => {
         return new Promise((resolve, reject) => {
             pool.getConnection()
@@ -27,10 +68,10 @@ module.exports = {
                     let myQuery = `SELECT * FROM deck WHERE ID=?`;
                     conn.query(myQuery, [id])
                         .then(row => {
-                            resolve({status: true, row: row})
+                            resolve({ status: true, row: row })
                         })
-                        .catch(err=>{
-                            reject({status: false, message: 'Error de query'})
+                        .catch(err => {
+                            reject({ status: false, message: 'Error de query' })
                         });
                     conn.release();
                 })
@@ -64,8 +105,8 @@ module.exports = {
         return new Promise((resolve, reject) => {
             pool.getConnection()
                 .then(conn => {
-                    let miQuery = 'UPDATE deck SET N=? WHERE ID=?';
-                    conn.query(miQuery, [deck.name, deck.ID])
+                    let miQuery = 'UPDATE deck SET Name=? WHERE ID=?';
+                    conn.query(miQuery, [deck.Name, deck.ID])
                         .then(row => {
                             resolve({ status: true, data: row })
                         })

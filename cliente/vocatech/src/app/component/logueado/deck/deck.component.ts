@@ -19,6 +19,7 @@ export class DeckComponent implements OnInit {
 
   public seeCards(id: number) {
     const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
     dialogConfig.data = this.deck;
     dialogConfig.panelClass = "cardsModal";
     this.dialog.open(CardsComponent, dialogConfig);

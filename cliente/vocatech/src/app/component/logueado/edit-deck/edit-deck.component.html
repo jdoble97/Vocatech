@@ -1,20 +1,28 @@
-<div class="editDeck" *ngIf="deck">
-    <div class="deck">
-        <h1>{{deck.Name}}</h1>
-        <button mat-raised-button>Cambiar nombre de baraja</button>
-        <button mat-raised-button>Añadir carta</button>
+<ng-container *ngIf="deck" class="container">
+    <h1>{{deck.Name}}</h1>
+    <h3 style="text-align: center;">Numero de cartas: {{numberCards}} </h3>
+    <h4 style="text-align: center;">Haz click en la palabra que quieres cambiar</h4>
+    <div class="editDeck">
+        <div class="deck">
+            <button mat-raised-button (click)="changeName()">Cambiar nombre de baraja</button>
+            <button mat-raised-button (click)="addCard()">Añadir carta</button>
+        </div>
+        <div class="cards" *ngIf="cards.length >0">
+            <table class="mat-elevation-z8">
+                <tr>
+                    <th>Palabra</th>
+                    <th>Traduccion</th>
+                    <th>Acción</th>
+                </tr>
+                <tr *ngFor="let item of cards">
+                    <td class="words" (click)="changeWord(item, 'SpanishName')">{{item.SpanishName}}</td>
+                    <td class="words" (click)="changeWord(item, 'EnglishName')">{{item.EnglishName}}</td>
+                    <td>
+                        <button mat-raised-button style="background-color: red;"
+                            (click)="deleteCard(item)">Eliminar</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-    <div class="cards">
-        <h1>Numero de cartas: {{numberCards}} </h1>
-        <table>
-            <tr>
-                <th>Palabra</th>
-                <th>Traduccion</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-            </tr>
-        </table>
-    </div>
-</div>
+</ng-container>

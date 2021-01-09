@@ -13,37 +13,19 @@ import { Carta } from 'src/app/shared/models/carta';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
-  title: string;
-  displayedColumns: string[] = ['Palabra', 'Traducción', 'Guardar']
   endpoint: string;
   cards: Carta[] = [];
-  public columnsToDisplay = ['Palabra', 'Traducción'];
   constructor(private dialogRef: MatDialogRef<CardsComponent>, @Inject(MAT_DIALOG_DATA) public deck: Baraja,
     private cartasService: CartasService, private userService: UserService) {
     this.endpoint = ConfigurationRouteService.url + `/cartas/${this.deck.ID}`;
-    console.log('OBJETO RECIBIDO', this.deck)
   }
 
   ngOnInit(): void {
-    console.log(this.deck);
-    this.cartasService.getCartas(this.deck.ID, this.userService.getToken(), this.endpoint)
+    this.cartasService.getCartas(this.endpoint, this.userService.getToken())
       .subscribe(cardsFromServer => {
         if (cardsFromServer['status']) {
           this.cards = cardsFromServer['data'];
-          this.cards = this.cards.concat(this.cards);
         }
-        console.log("Server decks", cardsFromServer);
       })
-  }
-  close() {
-    this.dialogRef.close("Gracias por usar MatDialog");
-  }
-
-  allToggle(){
-
-  }
-
-  isAllSelected(){
-    
   }
 }

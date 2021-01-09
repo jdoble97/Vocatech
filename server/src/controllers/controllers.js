@@ -68,6 +68,25 @@ module.exports = {
                 return res.json(err)
             })
     },
+    selectDecksOrderController: (req, res)=>{
+        barajaDB.selectDecksByOrder({FK_Email: res.locals.user, ID: req.params.id})
+            .then(response=>{
+                return res.status(200).json(response)
+            })
+            .catch(err=>{
+                return res.status(200).json(err)
+            })
+    },
+
+    selectDecksLastController: (req, res)=>{
+        barajaDB.selectDecksLast({FK_Email: res.locals.user, ID: req.params.id})
+            .then(response=>{
+                return res.status(200).json(response)
+            })
+            .catch(err=>{
+                return res.status(200).json(err)
+            })
+    },
 
     selectDeckController: (req, res) => {
         let id = req.params.id
@@ -81,7 +100,7 @@ module.exports = {
     },
 
     updateBarajaController: (req, res) => {
-        barajaDB.updateBaraja(req.body)
+        barajaDB.updateDeck(req.body)
             .then(resultado => {
                 return res.status(200).json(resultado);
             })
@@ -141,7 +160,7 @@ module.exports = {
                 return res.status(200).json(registros);
             })
             .catch(err => {
-                return res.json(err)
+                return res.status(200).json(err)
             })
     },
 

@@ -7,8 +7,10 @@
 }
 
 button{
-    flex: 0 1 21%;
+    flex: 0 1 40%;
+    margin: 0.5em;
     height: 90vh;
+    min-width: 300px;
     font-size: 2.5em;
 }
 

@@ -3,8 +3,10 @@ import { ConfigurationRouteService } from 'src/app/services/configurationRoute';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 //Dialog
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { ModifyDeckComponent } from '../modify-deck/modify-deck.component';
+import { BarajaService } from 'src/app/services/baraja.service';
+import { Baraja } from 'src/app/shared/models/baraja';
 
 
 @Component({
@@ -14,7 +16,7 @@ import { ModifyDeckComponent } from '../modify-deck/modify-deck.component';
 })
 export class AddflashcardComponent implements OnInit {
 
-  constructor(private userService: UserService, private dialog: MatDialog) { }
+  constructor(private userService: UserService, private dialog: MatDialog, private deckService: BarajaService) { }
 
   ngOnInit(): void {
   }
@@ -25,40 +27,18 @@ export class AddflashcardComponent implements OnInit {
       input: 'text',
       inputPlaceholder: 'Nombre de la baraja',
       confirmButtonText: 'Crear baraja',
-      showCancelButton: true
+      showDenyButton: true,
+      denyButtonText: 'Cancelar'
     })
-      .then(value => {
-        console.log(value);
-        if (value.isConfirmed) {
-          if (value.value.length < 3) {
+      .then(name=>{        
+        if(name.isConfirmed){
+          if(name.value.length<3){
             Swal.fire({
-              icon: 'error',
-              title: 'Debes escribir por lo menos tres caracteres',
-            })
-          } else {
-            fetch(`${ConfigurationRouteService.url}/baraja`, {
-              headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'Authorization': `Bearer ${this.userService.getToken()}`
-              },
-              method: 'POST',
-              body: this.userService.getUserCredentialsforPost(value.value),
-            })
-              .then(response => response.json())
-              .then(data => {
-                if (data.status) {
-                  Swal.fire({
-                    icon: 'success',
-                    title: `${data.message}`
-                  })
-                }
-              })
-              .catch(err => {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Error de conexión'
-                })
-              })
+              icon: 'info',
+              title: 'Debes escribir por lo menos 3 caracteres'
+            });
+          }else{
+            this.createDeck(name.value);
           }
         }
       })
@@ -69,5 +49,18 @@ export class AddflashcardComponent implements OnInit {
       panelClass: 'dialogModify',
       //disableClose: true
     });
+  }
+
+  createDeck(name: string){
+    let temporaryDeck: Baraja = {Name: name, FK_Email: this.userService.getUser().email}
+    this.deckService.insertBaraja(ConfigurationRouteService.url+'/carta',temporaryDeck, this.userService.getToken())
+      .subscribe(response=>{
+        Swal.fire({
+          icon: 'success',
+          title: 'Baraja creada correctamente'
+        })        
+      })
+    
+    
   }
 }

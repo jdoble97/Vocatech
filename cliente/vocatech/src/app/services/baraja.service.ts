@@ -9,11 +9,13 @@ import { ConfigurationRouteService } from './configurationRoute';
 export class BarajaService {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+  }
 
   //Create
-  insertBaraja(baraja: Baraja, token: string) {
-    return this.http.post(ConfigurationRouteService.url + '/baraja', baraja, {
+  insertBaraja(endpoint: string, baraja: Baraja, token: string) {
+    return this.http.post(ConfigurationRouteService.url + '/baraja', JSON.stringify(baraja), {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
@@ -23,13 +25,13 @@ export class BarajaService {
 
   //Read
   selectBarajas(endpoint: string, token: string) {
-    let misheaders = new HttpHeaders({ 'Content-Type': 'application/json', Authorization: `Bearer ${token}` });
+    let misheaders = new HttpHeaders({Authorization: `Bearer ${token}` });
     return this.http.get(endpoint, { headers: misheaders });
   }
 
   //Update
-  updateBaraja(baraja: Baraja, token: string) {
-    return this.http.put(ConfigurationRouteService.url + '/baraja', baraja, {
+  updateBaraja(endpoint: string, baraja: Baraja, token: string) {
+    return this.http.put(endpoint, baraja, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`

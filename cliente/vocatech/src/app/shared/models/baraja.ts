@@ -1,6 +1,6 @@
 export class Baraja{
-    ID: number;
-    FK_Email: string;
+    ID?: number;
+    FK_Email?: string;
     Name: string;
-    Favorite: boolean;
+    Favorite?: boolean;
 }

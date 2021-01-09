@@ -5,7 +5,7 @@ module.exports = {
         return new Promise((resolve, reject)=>{
             pool.getConnection()
                 .then(conn=>{
-                    let miQuery = `SELECT * FROM card WHERE FK_DeckID=?`;
+                    let miQuery = `SELECT * FROM card WHERE FK_DeckID=? ORDER BY ID DESC`;
                     conn.query(miQuery,[idBaraja])
                         .then(row=>{
                             resolve({status: true, data: row})
@@ -24,8 +24,8 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             pool.getConnection()
                 .then(conn=>{
-                    let miQuery = `INSERT INTO card VALUES(null, ?, ?, ?, ?)`;
-                    conn.query(miQuery,[carta.FK_DeckID, carta.nombreCastellano, carta.nombreIngles, carta.aprendido])
+                    let miQuery = `INSERT INTO card (FK_DeckID, SpanishName, EnglishName) VALUES(?, ?, ?)`;
+                    conn.query(miQuery,[carta.FK_DeckID, carta.SpanishName, carta.EnglishName])
                         .then(row=>{
                             resolve({status: true, insertId: row.insertId})
                         })
@@ -44,8 +44,8 @@ module.exports = {
         return new Promise((resolve, reject)=>{
             pool.getConnection()
                 .then(conn=>{
-                    let miQuery = 'UPDATE card SET FK_DeckID=?, nombreCastellano=?, nombreIngles=?, aprendido=? WHERE ID=?';
-                    conn.query(miQuery, [carta.FK_DeckID, carta.nombreCastellano, carta.nombreIngles, carta.aprendido, carta.ID])
+                    let miQuery = 'UPDATE card SET SpanishName=?, EnglishName=? WHERE ID=?';
+                    conn.query(miQuery, [carta.SpanishName, carta.EnglishName, carta.ID])
                         .then(row=>{
                             resolve({status: true, message: 'Carta actualizada'});
                         })

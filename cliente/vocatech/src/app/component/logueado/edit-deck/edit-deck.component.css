@@ -1,15 +1,16 @@
+
 .editDeck {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .cards {
     flex: 1 1 70%;
-    background-color: coral;
 }
 
 .deck {
-    flex: 1 1 30%;
+    flex: 0 1 30%;
+    align-self: flex-start;
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -24,11 +25,21 @@
 }
 
 table {
+    border-collapse: collapse;
+    border-spacing: 0;
     width: 100%;
+    border: 1px solid #ddd;
 }
 
 td {
     text-align: center;
+}
+th, td{
+    padding:0.5em;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
 @media only screen and (max-width: 700px) {
@@ -39,6 +50,7 @@ td {
     .deck {
         height: max-content;
         flex: 1 1 20%;
+        align-self: center;
     }
     .cards {
         flex: 1 1 80%
@@ -47,4 +59,17 @@ td {
 
 h1 {
     text-align: center;
+}
+
+@media only screen and (min-width:701px){
+    .deck{
+        position: -webkit-sticky;
+        position: sticky;
+        top:0;
+    }
+}
+
+.words:nth-of-type(1n+1):hover{
+    background-color: seagreen;
+    cursor: pointer;
 }
