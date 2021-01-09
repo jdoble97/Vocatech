@@ -22,9 +22,9 @@ export class ModifyDeckComponent implements OnInit {
 
   constructor(private deckService: BarajaService, private userService: UserService, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.deckService.getNumberDecks(this.userService.getToken())
-      .subscribe(response => {
+      .subscribe(response => {        
         if (response['status']) {
           this.numberDecks = response['number']
           if (this.numberDecks > 0) {

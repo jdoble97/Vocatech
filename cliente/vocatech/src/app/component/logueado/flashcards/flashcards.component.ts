@@ -61,7 +61,6 @@ export class FlashcardsComponent implements OnInit {
         .subscribe(response=>{
           this.actualDecks -= this.barajas.length;
           this.barajas = response['data'].reverse();
-          console.log(this.barajas);
           window.scroll(0,0)
         })
     }

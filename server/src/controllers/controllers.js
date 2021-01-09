@@ -49,10 +49,12 @@ module.exports = {
     },
     //Baraja
     insertBarajaController: (req, res) => {
-        let baraja = req.body;
+        let baraja = {FK_Email: res.locals.user, ...req.body}
+        console.log("sdfasfd",baraja);
+        console.log('DENTRO DE INSERT');
         barajaDB.insertDeck(baraja)
             .then(resultado => {
-                res.status(200).json(resultado);
+                return res.status(200).json(resultado);
             })
             .catch(err => {
                 return res.status(200).json(err)

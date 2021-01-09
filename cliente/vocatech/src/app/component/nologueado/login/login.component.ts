@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
   onSubmit(): void{
     let user = JSON.stringify(this.login.value);
     this.http.sendCredentials(user).subscribe(resp=>{
-      console.log(resp)
       if(resp['status']){
         this.onSubmitSuccess(<User>resp);
       }

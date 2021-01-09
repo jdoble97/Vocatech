@@ -15,7 +15,7 @@ export class BarajaService {
 
   //Create
   insertBaraja(endpoint: string, baraja: Baraja, token: string) {
-    return this.http.post(ConfigurationRouteService.url + '/baraja', JSON.stringify(baraja), {
+    return this.http.post(endpoint, JSON.stringify(baraja), {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`

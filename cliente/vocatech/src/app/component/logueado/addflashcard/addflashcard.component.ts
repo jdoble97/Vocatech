@@ -52,9 +52,9 @@ export class AddflashcardComponent implements OnInit {
   }
 
   createDeck(name: string){
-    let temporaryDeck: Baraja = {Name: name, FK_Email: this.userService.getUser().email}
-    this.deckService.insertBaraja(ConfigurationRouteService.url+'/carta',temporaryDeck, this.userService.getToken())
-      .subscribe(response=>{
+    let temporaryDeck: Baraja = {Name: name}    
+    this.deckService.insertBaraja(ConfigurationRouteService.url+'/baraja',temporaryDeck, this.userService.getToken())
+      .subscribe(response=>{        
         Swal.fire({
           icon: 'success',
           title: 'Baraja creada correctamente'

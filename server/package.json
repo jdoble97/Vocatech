@@ -19,7 +19,6 @@
     "moment": "^2.29.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6",
-    "sqlite3": "^5.0.0"
+    "nodemon": "^2.0.6"
   }
 }

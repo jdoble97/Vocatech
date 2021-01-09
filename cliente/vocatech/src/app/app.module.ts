@@ -3,11 +3,8 @@ import { NgModule } from '@angular/core';
 
 //Componentes
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './component/logueado/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { MainComponent } from './component/logueado/main/main.component';
 import { RegisterComponent } from './component/nologueado/register/register.component';
-import { HomeComponent } from './component/logueado/home/home.component';
 import { AddflashcardComponent } from './component/logueado/addflashcard/addflashcard.component';
 import { FlashcardsComponent } from './component/logueado/flashcards/flashcards.component';
 import { LoginComponent } from './component/nologueado/login/login.component';
@@ -24,9 +21,6 @@ import { MaterialModule } from './material.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { NavbarDesktopComponent } from './component/logueado/navbar-desktop/navbar-desktop.component';
 import { ContenedorComponent } from './component/logueado/contenedor/contenedor.component';
-import { ErrorComponent } from './component/error/error.component';
-import { GameComponent } from './component/logueado/game/game.component';
-import { LogoutComponent } from './component/logueado/logout/logout.component';
 import { UserService } from './services/user.service';
 import { CardsComponent } from './component/logueado/cards/cards.component';
 import { PresentationLetterComponent } from './component/nologueado/about/presentation-letter/presentation-letter.component';
@@ -40,20 +34,14 @@ import { EditDeckComponent } from './component/logueado/edit-deck/edit-deck.comp
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
-    MainComponent,
     RegisterComponent,
-    HomeComponent,
     AddflashcardComponent,
     FlashcardsComponent,
     AboutComponent,
     LoginComponent,
     NavbarDesktopComponent,
     ContenedorComponent,
-    ErrorComponent,
-    GameComponent,
-    LogoutComponent,
     CardsComponent,
     PresentationLetterComponent,
     MenuBeforeLoginComponent,

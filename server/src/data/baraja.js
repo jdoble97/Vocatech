@@ -91,6 +91,7 @@ module.exports = {
                             resolve({ status: true, idDeck: row.insertId, message: 'Baraja insertada correctamente' });
                         })
                         .catch(err => {
+                            console.log(err);
                             reject({ status: false, message: 'Error de query' });
                         })
                     conn.release();
