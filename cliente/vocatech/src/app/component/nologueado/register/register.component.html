@@ -1,46 +1,48 @@
 <div class="containerForm">
     <div class="containerSaludo">
-        <p class="saludo">Bienvenido a Vocatech <br><br>Regístrate aquí gratis</p>
+        <p class="saludo">Bienvenido a Vocatech<br>Regístrate aquí gratis</p>
     </div>
     <div class="formularioRegistro">
-        <form  novalidate [formGroup]="registro" #fform="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
-            <p>
-                <mat-form-field appearance="standard">
-                    <mat-label class="error">Inserta tu nombre</mat-label>
-                    <input matInput formControlName=Name type="text" required>
-                    <mat-hint>Tu nombre</mat-hint>
-                    <mat-error class="error" *ngIf="registro.get('Name').hasError('required') && registro.get('Name').touched ">
-                        Nombre de usuario requerido
-                    </mat-error>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field  appearance="standard">
-                    <mat-label class="error">Inserta tu correo</mat-label>
-                    <input matInput formControlName=EMAIL type="email" required>
-                    <mat-hint>Tu email</mat-hint>
-                    <mat-error class="error" *ngIf="registro.get('EMAIL').hasError('required') && registro.get('EMAIL').touched ">
-                        Email requerido
-                    </mat-error>
-                    <mat-error class="error" *ngIf="registro.get('EMAIL').hasError('EMAIL') && registro.get('EMAIL').touched ">
-                        Debes poner un correo valido
-                    </mat-error>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="standard">
-                    <mat-label class="error" >Inserta tu contraseña</mat-label>
-                    <input matInput formControlName="Pass" type="password" minlength="6">
-                    <mat-hint>Tu contraseña</mat-hint>
-                    <mat-error class="error" *ngIf="registro.get('Pass').hasError('required') && registro.get('Pass').touched ">
-                        Contraseña requerida
-                    </mat-error>
-                    <mat-error class="error" *ngIf="registro.get('Pass').hasError('minlength') && registro.get('Pass').touched ">
-                        La contraseña debe tener minimo 6 caracteres
-                    </mat-error>
-                </mat-form-field>
-            </p>
-            <button type="submit" [disabled]="registro.invalid" mat-raised-button color="primary">Registrarse</button>
-        </form>
+        <div class="formulario">
+            <form  novalidate [formGroup]="registro"  #fform="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                <p>
+                    <mat-form-field appearance="standard">
+                        <mat-label class="error">Inserta tu nombre</mat-label>
+                        <input matInput formControlName=Name type="text" required>
+                        <mat-hint>Tu nombre</mat-hint>
+                        <mat-error class="error" *ngIf="registro.get('Name').hasError('required') && registro.get('Name').touched ">
+                            Nombre de usuario requerido
+                        </mat-error>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field  appearance="standard">
+                        <mat-label class="error">Inserta tu correo</mat-label>
+                        <input matInput formControlName=EMAIL type="email" required>
+                        <mat-hint>Tu email</mat-hint>
+                        <mat-error class="error" *ngIf="registro.get('EMAIL').hasError('required') && registro.get('EMAIL').touched ">
+                            Email requerido
+                        </mat-error>
+                        <mat-error class="error" *ngIf="registro.get('EMAIL').hasError('EMAIL') && registro.get('EMAIL').touched ">
+                            Debes poner un correo valido
+                        </mat-error>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="standard">
+                        <mat-label class="error" >Inserta tu contraseña</mat-label>
+                        <input matInput formControlName="Pass" type="password" minlength="6">
+                        <mat-hint>Tu contraseña</mat-hint>
+                        <mat-error class="error" *ngIf="registro.get('Pass').hasError('required') && registro.get('Pass').touched ">
+                            Contraseña requerida
+                        </mat-error>
+                        <mat-error class="error" *ngIf="registro.get('Pass').hasError('minlength') && registro.get('Pass').touched ">
+                            La contraseña debe tener minimo 6 caracteres
+                        </mat-error>
+                    </mat-form-field>
+                </p>
+                <button type="submit" [disabled]="registro.invalid" mat-raised-button color="primary">Registrarse</button>
+            </form>
+        </div>
     </div>
 </div>

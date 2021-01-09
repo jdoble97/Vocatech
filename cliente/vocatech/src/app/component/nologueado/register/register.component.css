@@ -36,7 +36,6 @@
     background-color: saddlebrown;
     min-width: 200px;
     width: 50%;
-    display: flex;
     background-image: linear-gradient(140deg, #8F00FF 25%, #89AAE6 50%, #dcb333 75%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     animation-name: register;
@@ -49,22 +48,30 @@
 .formularioRegistro{
     flex-grow: 1;
     /*background-color:#dcb333;*/
+    
+    height: 70vh;
+}
+.containerSaludo{
+    flex-grow: 1;
+    justify-content: center;
+    height: 70vh;
+    
+    /*background-color: #8F00FF;*/
+}
+.formulario{
     position: relative;
     top:12em;
     left:2em;
-    height: 70vh;
 }
 .saludo{
     position:relative;
     top:8em;
     left:2em;
     font-size: 2.5em;
+    text-align: center;
+    line-height: 1.3;
 }
-.containerSaludo{
-    height: 70vh;
-    flex-grow: 1;
-    /*background-color: #8F00FF;*/
-}
+
 
 @keyframes register{
     0%   {right:800px; top: 800px;}
@@ -82,10 +89,11 @@
         flex-grow: 1;
     }
     .saludo{
-        position: absolute;
+        position: relative;
         top:15%;
         font-size: 2em;
-        line-height: 1.3;   
+        line-height: 1.3; 
+        text-align: center;  
     }
     .formularioRegistro{
         height: 40%;
