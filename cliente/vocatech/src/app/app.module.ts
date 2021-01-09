@@ -30,6 +30,8 @@ import { DeckComponent } from './component/logueado/deck/deck.component';
 import { FormsModule} from '@angular/forms';
 import { ModifyDeckComponent } from './component/logueado/modify-deck/modify-deck.component';
 import { EditDeckComponent } from './component/logueado/edit-deck/edit-deck.component';
+import { BarajaService } from './services/baraja.service';
+import { CartasService } from './services/cartas.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,7 @@ import { EditDeckComponent } from './component/logueado/edit-deck/edit-deck.comp
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AuthenticationService, UserService],
+  providers: [AuthenticationService, UserService, BarajaService, CartasService, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

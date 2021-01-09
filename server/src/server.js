@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(express.static('vocatech'));
 app.use((req, resp, next)=>{
-    console.log(req.method,':',req.url);
+    console.log(req.method,'->', req.originalUrl, req.url);
     next()
 })
 app.use('/',rutas)

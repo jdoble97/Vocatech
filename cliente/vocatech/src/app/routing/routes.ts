@@ -11,10 +11,10 @@ import { DefaultGuard } from '../auth/default.guard';
 export const routes: Routes = [
     {path:'barajas', component: FlashcardsComponent, canActivate: [UserGuard]},
     {path:'administrar-barajas', component:AddflashcardComponent, canActivate: [UserGuard]},
-    {path:'', redirectTo:'/administrar-barajas', pathMatch:'full'},
     {path: 'registrar', component: RegisterComponent, canActivate:[DefaultGuard]},
     {path:'about', component: AboutComponent, canActivate:[DefaultGuard]},
     {path: 'login', component: LoginComponent, canActivate:[DefaultGuard]},
     {path:'editar/:id', component: EditDeckComponent, canActivate: [UserGuard]},
+    {path:'', redirectTo:'/barajas', pathMatch:'full'},
     {path: '**', redirectTo:'/barajas', pathMatch:'full'}
 ]

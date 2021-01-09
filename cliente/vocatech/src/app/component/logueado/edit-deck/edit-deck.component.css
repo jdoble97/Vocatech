@@ -1,4 +1,7 @@
 
+*{
+    color:black
+}
 .editDeck {
     display: flex;
     min-height: 100vh;
@@ -46,14 +49,16 @@ tr:nth-child(even) {
     .editDeck {
         flex-direction: column;
         min-width: 300px;
+        height: 100vh;
     }
     .deck {
-        height: max-content;
+        height: 20vh;
         flex: 1 1 20%;
         align-self: center;
     }
     .cards {
-        flex: 1 1 80%
+        height: 80vh;
+        flex: 1 1 80%;
     }
 }
 
@@ -72,4 +77,8 @@ h1 {
 .words:nth-of-type(1n+1):hover{
     background-color: seagreen;
     cursor: pointer;
+}
+
+.deck > button {
+    background-color: cornflowerblue;
 }

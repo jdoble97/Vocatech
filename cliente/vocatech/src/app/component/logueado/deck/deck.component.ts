@@ -3,6 +3,7 @@ import { Baraja } from 'src/app/shared/models/baraja';
 //Modal
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CardsComponent } from '../cards/cards.component';
+import { EditDeckComponent } from '../edit-deck/edit-deck.component';
 
 
 @Component({
@@ -23,6 +24,14 @@ export class DeckComponent implements OnInit {
     dialogConfig.data = this.deck;
     dialogConfig.panelClass = "cardsModal";
     this.dialog.open(CardsComponent, dialogConfig);
+  }
+
+  public editCard(id){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'editDialog';
+    dialogConfig.disableClose = true;
+    dialogConfig.data = id
+    this.dialog.open(EditDeckComponent,dialogConfig) 
   }
 
 }

@@ -159,9 +159,11 @@ module.exports = {
         let id = req.params.id
         cartasDB.selectCards(id)
             .then(registros => {
+                console.log('SUCESS');
                 return res.status(200).json(registros);
             })
             .catch(err => {
+                console.log('ERRO');
                 return res.status(200).json(err)
             })
     },

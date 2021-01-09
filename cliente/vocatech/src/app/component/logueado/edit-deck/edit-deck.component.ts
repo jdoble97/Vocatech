@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BarajaService } from 'src/app/services/baraja.service';
 import { CartasService } from 'src/app/services/cartas.service';
@@ -6,6 +6,7 @@ import { ConfigurationRouteService } from 'src/app/services/configurationRoute';
 import { UserService } from 'src/app/services/user.service';
 import { Baraja } from 'src/app/shared/models/baraja';
 import { Carta } from 'src/app/shared/models/carta';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,34 +15,33 @@ import Swal from 'sweetalert2';
   styleUrls: ['./edit-deck.component.css']
 })
 export class EditDeckComponent implements OnInit {
-
+  // 
   public id: string;
   public deck: Baraja
   public cards: Carta[];
   private temporaryCard: Carta;
   public numberCards: number
   constructor(private route: ActivatedRoute, private deckService: BarajaService, private userService: UserService,
-    private cardService: CartasService) {
-      this.numberCards = 0;
-      this.cards = [];
+    private cardService: CartasService,@Inject(MAT_DIALOG_DATA) public data: number ) {
+    this.id = data.toString();
+    this.numberCards = 0;
+    this.cards = [];
   }
-
+  // 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
     this.deckService.selectBarajas(ConfigurationRouteService.url + `/baraja/${this.id}`, this.userService.getToken())
-      .subscribe(result => {
-        if (result['row'].length > 0) {
-          this.deck = result['row'][0];
-          this.cardService.getCartas(ConfigurationRouteService.url+`/cartas/${this.deck.ID}`,this.userService.getToken())
-            .subscribe(response=>{
-              this.numberCards = response['data'].length;
-              this.cards = response['data'];
-            })
-        }
-      })
- 
+    .subscribe(result => {
+      if (result['row'].length > 0) {
+        this.deck = result['row'][0];
+        this.cardService.getCartas(ConfigurationRouteService.url + `/cartas/${this.deck.ID}`, this.userService.getToken())
+          .subscribe(response => {
+            this.numberCards = response['data'].length;
+            this.cards = response['data'];
+          })
+      }
+    })
   }
-
+  // 
   changeName() {
     Swal.fire({
       title: 'Escribe el nuevo nombre para tu baraja',
@@ -49,7 +49,7 @@ export class EditDeckComponent implements OnInit {
       confirmButtonText: 'Cambiar nombre',
       showDenyButton: true,
       denyButtonText: 'Cancelar'
-
+      // 
     })
       .then(name => {
         if (name.isConfirmed && name.value.length >= 3) {
@@ -64,7 +64,7 @@ export class EditDeckComponent implements OnInit {
         }
       })
   }
-
+  // 
   addCard() {
     Swal.mixin({
       input: 'text',
@@ -82,17 +82,17 @@ export class EditDeckComponent implements OnInit {
         text: 'Escribe su traducción'
       }
     ]).then((result) => {
-      
+      // 
       if (result['value']) {
-        if(result['value'][0].length>0 && result['value'][1].length>0){
+        if (result['value'][0].length > 0 && result['value'][1].length > 0) {
           this.addCardCorrect(result['value']);
-        }else{
+        } else {
           this.addCardIncorrect();
         }
       }
     })
   }
-
+  // 
   updateName(name: string) {
     this.deckService.updateBaraja(ConfigurationRouteService.url + '/baraja', this.deck, this.userService.getToken())
       .subscribe(response => {
@@ -102,29 +102,29 @@ export class EditDeckComponent implements OnInit {
         });
       })
   }
-
-  addCardCorrect(words: string[]){
-    let cardToInsert: Carta = {FK_DeckID: this.deck.ID, SpanishName: words[0], EnglishName: words[1]}
-    this.cardService.insertCarta(ConfigurationRouteService.url+'/carta',cardToInsert, this.userService.getToken())
-      .subscribe(response=>{
-        this.temporaryCard = {FK_DeckID: this.deck.ID, ID: response['insertId'], SpanishName: words[0], EnglishName: words[1]};
+  // 
+  addCardCorrect(words: string[]) {
+    let cardToInsert: Carta = { FK_DeckID: this.deck.ID, SpanishName: words[0], EnglishName: words[1] }
+    this.cardService.insertCarta(ConfigurationRouteService.url + '/carta', cardToInsert, this.userService.getToken())
+      .subscribe(response => {
+        this.temporaryCard = { FK_DeckID: this.deck.ID, ID: response['insertId'], SpanishName: words[0], EnglishName: words[1] };
         this.cards.unshift(this.temporaryCard);
         this.numberCards++;
         Swal.fire({
-          icon:'success',
+          icon: 'success',
           title: 'Carta creada correctamente'
         });
       })
-
+    // 
   }
-  addCardIncorrect(){
+  addCardIncorrect() {
     Swal.fire({
       icon: 'info',
       text: 'Cada palabra debe tener por lo menos una letra'
     })
   }
   //////
-  changeWord(word: Carta, lang: string){
+  changeWord(word: Carta, lang: string) {
     Swal.fire({
       title: 'Palabra a cambiar',
       text: word[lang],
@@ -134,13 +134,13 @@ export class EditDeckComponent implements OnInit {
       input: 'text',
       inputPlaceholder: word[lang]
     })
-      .then(response=>{
-        if(response.isConfirmed){
-          if(response.value.length>0){
+      .then(response => {
+        if (response.isConfirmed) {
+          if (response.value.length > 0) {
             this.temporaryCard = word;
             this.temporaryCard[lang] = response.value
             this.updateWord(this.temporaryCard);
-          }else{
+          } else {
             Swal.fire({
               icon: 'info',
               title: 'Debes escribir por lo menos una palabra'
@@ -150,9 +150,9 @@ export class EditDeckComponent implements OnInit {
       })
   }
 
-  updateWord(word: Carta){
-    this.cardService.updateCarta(ConfigurationRouteService.url+'/carta', word, this.userService.getToken())
-      .subscribe(response=>{        
+  updateWord(word: Carta) {
+    this.cardService.updateCarta(ConfigurationRouteService.url + '/carta', word, this.userService.getToken())
+      .subscribe(response => {
         Swal.fire({
           icon: 'success',
           title: 'Se ha cambiado la palabra correctamente'
@@ -160,23 +160,24 @@ export class EditDeckComponent implements OnInit {
       })
   }
 
-  deleteCard(card: Carta){
+  deleteCard(card: Carta) {
     Swal.fire({
       icon: 'info',
       title: '¿Estás seguro de querer eliminar la carta?',
       showDenyButton: true,
       denyButtonText: 'Cancelar'
     })
-      .then(response=>{
-        if(response.isConfirmed){
+      .then(response => {
+        if (response.isConfirmed) {
           const index = this.cards.indexOf(card);
           this.cards.splice(index, 1);
           --this.numberCards;
-          this.cardService.deleteCarta(ConfigurationRouteService.url+`/carta/${card.ID}`, this.userService.getToken())
-            .subscribe(response=>{
-
+          this.cardService.deleteCarta(ConfigurationRouteService.url + `/carta/${card.ID}`, this.userService.getToken())
+            .subscribe(response => {
             })
         }
       })
   }
+
+  
 }

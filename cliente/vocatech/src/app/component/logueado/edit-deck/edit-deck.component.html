@@ -1,28 +1,33 @@
 <ng-container *ngIf="deck" class="container">
-    <h1>{{deck.Name}}</h1>
-    <h3 style="text-align: center;">Numero de cartas: {{numberCards}} </h3>
-    <h4 style="text-align: center;">Haz click en la palabra que quieres cambiar</h4>
-    <div class="editDeck">
-        <div class="deck">
-            <button mat-raised-button (click)="changeName()">Cambiar nombre de baraja</button>
-            <button mat-raised-button (click)="addCard()">Añadir carta</button>
+    <h1 mat-dialog-title>{{deck.Name}}</h1>
+    <mat-dialog-content>
+        <h3 style="text-align: center;">Cartas: {{numberCards}} </h3>
+        <h4 style="text-align: center;">Click en la palabra para cambiarla</h4>
+        <div class="editDeck">
+            <div class="deck">
+                <button mat-raised-button  (click)="changeName()">Cambiar nombre de baraja</button>
+                <button mat-raised-button (click)="addCard()">Añadir carta</button>
+            </div>
+            <div class="cards" *ngIf="cards.length >0">
+                <table class="mat-elevation-z8">
+                    <tr>
+                        <th>Palabra</th>
+                        <th>Traduccion</th>
+                        <th>Acción</th>
+                    </tr>
+                    <tr *ngFor="let item of cards">
+                        <td class="words" (click)="changeWord(item, 'SpanishName')">{{item.SpanishName}}</td>
+                        <td class="words" (click)="changeWord(item, 'EnglishName')">{{item.EnglishName}}</td>
+                        <td>
+                            <button mat-raised-button style="background-color: red;"
+                                (click)="deleteCard(item)">Eliminar</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div class="cards" *ngIf="cards.length >0">
-            <table class="mat-elevation-z8">
-                <tr>
-                    <th>Palabra</th>
-                    <th>Traduccion</th>
-                    <th>Acción</th>
-                </tr>
-                <tr *ngFor="let item of cards">
-                    <td class="words" (click)="changeWord(item, 'SpanishName')">{{item.SpanishName}}</td>
-                    <td class="words" (click)="changeWord(item, 'EnglishName')">{{item.EnglishName}}</td>
-                    <td>
-                        <button mat-raised-button style="background-color: red;"
-                            (click)="deleteCard(item)">Eliminar</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button mat-dialog-close color="primary" style="margin:0 auto 0 auto">Cerrar</button>
+    </mat-dialog-actions>
 </ng-container>

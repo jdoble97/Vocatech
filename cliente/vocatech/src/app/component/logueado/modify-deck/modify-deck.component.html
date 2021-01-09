@@ -11,7 +11,7 @@
                 <td><p>{{item.Name}}</p></td>
                 <td class="buttons">
                     <button mat-raised-button class="deleteButton" (click)="deleteDeck(item)">Eliminar</button>
-                    <button mat-raised-button class="editButton" mat-dialog-close (click)="edit(item)">Editar</button>
+                    <button mat-raised-button class="editButton" mat-dialog-close (click)="edit(item.ID)">Editar</button>
                 </td>
             </tr>
         </table>
@@ -19,6 +19,6 @@
     <mat-dialog-actions>
         <button mat-raised-button color="primary" (click)="lastDecks()">Anterior</button>
         <span>{{numberActual}}/{{numberDecks}}</span>
-        <button mat-raised-button color="accent" (click)="nextDecks()">Siguiente</button>
+        <button mat-raised-button color="primary" (click)="nextDecks()">Siguiente</button>
     </mat-dialog-actions>
 </ng-container>

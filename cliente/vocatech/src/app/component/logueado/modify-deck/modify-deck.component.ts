@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BarajaService } from 'src/app/services/baraja.service';
 import { ConfigurationRouteService } from 'src/app/services/configurationRoute';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import { EditDeckComponent } from '../edit-deck/edit-deck.component';
 
 @Component({
   selector: 'app-modify-deck',
@@ -20,7 +21,7 @@ export class ModifyDeckComponent implements OnInit {
   public numberTemporary: number
   public decks: string[] = [];
 
-  constructor(private deckService: BarajaService, private userService: UserService, private router: Router) { }
+  constructor(private deckService: BarajaService, private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit(): void {    
     this.deckService.getNumberDecks(this.userService.getToken())
@@ -104,7 +105,11 @@ export class ModifyDeckComponent implements OnInit {
       })
   }
 
-  edit(deckInfo){
-    this.router.navigate(['/editar', deckInfo['ID']]);
+  edit(id){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'editDialog';
+    dialogConfig.disableClose = true;
+    dialogConfig.data = id
+    this.dialog.open(EditDeckComponent,dialogConfig)     
   }
 }

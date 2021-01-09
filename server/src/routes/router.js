@@ -37,7 +37,6 @@ routes.put('/api/carta', middleware.isAuth, controllers.updateCartaController);
 routes.delete('/api/carta/:id',middleware.isAuth, controllers.deleteCartaController);
 routes.get('*',(req,res)=>{
     let ruta = path.join(__dirname, "../../vocatech/index.html");
-    console.log(ruta)
     res.sendFile(ruta);
 })
 

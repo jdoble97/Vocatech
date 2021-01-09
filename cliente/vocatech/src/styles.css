@@ -8,7 +8,7 @@
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 62.5%; }
 .menu{
-    background-color: #6761A8;
+    background-color: #a861a4;
     position: relative;
 }
 .active{
@@ -24,4 +24,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 
 }
 .dialogModify{
     width: 90vw;
+}
+.editDialog{
+    width: 100vw;
 }

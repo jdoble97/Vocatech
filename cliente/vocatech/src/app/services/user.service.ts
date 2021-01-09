@@ -31,14 +31,14 @@ export class UserService {
   }
 
   checkInit(): boolean {
-    let user = localStorage.getItem('user')
+    let user = localStorage.getItem('user')    
     if (user) {
-      this.user = JSON.parse(user);
-      this.router.events.subscribe((val) => {
-        if (val instanceof NavigationEnd) {
-          this.router.navigate([this.router.url])
-        }
-      });
+       this.user = JSON.parse(user);
+      // this.router.events.subscribe((val) => {        
+      //   if (val instanceof NavigationEnd) {
+      //     console.log('ruta final', this.router.url);
+      //   }
+      // });
       return true;
     }
     return false;
