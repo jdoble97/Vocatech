@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Baraja } from '../shared/models/baraja';
-import { ConfigurationRouteService} from './configurationRoute';
+import { ConfigurationRouteService } from './configurationRoute';
 
 @Injectable({
   providedIn: 'root'
@@ -9,34 +9,58 @@ import { ConfigurationRouteService} from './configurationRoute';
 export class BarajaService {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+  }
 
   //Create
-  insertBaraja(baraja: Baraja, token: string){
-    return this.http.post(ConfigurationRouteService.url+'/baraja', baraja, {headers:{
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    }})
+  insertBaraja(endpoint: string, baraja: Baraja, token: string) {
+    return this.http.post(endpoint, JSON.stringify(baraja), {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
   }
 
   //Read
-  selectBarajas(token: string, endpoint: string){
-    let misheaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: `Bearer ${token}`});
-    return this.http.get(endpoint,{headers: misheaders});
+  selectBarajas(endpoint: string, token: string) {
+    let misheaders = new HttpHeaders({Authorization: `Bearer ${token}` });
+    return this.http.get(endpoint, { headers: misheaders });
   }
 
   //Update
-  updateBaraja(baraja: Baraja ,token: string){
-    return this.http.put(ConfigurationRouteService.url+'/baraja',baraja, {headers:{
-      'Content-Type': 'application/json',
+  updateBaraja(endpoint: string, baraja: Baraja, token: string) {
+    return this.http.put(endpoint, baraja, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
+  }
+
+  //Delete
+  deleteBaraja(endpoint: string, token: string) {
+    return this.http.delete(endpoint, {headers:{
       Authorization: `Bearer ${token}`
     }})
   }
 
-  //Delete
-  deleteBaraja(id: number, token: string){
-    return this.http.delete(ConfigurationRouteService.url+`/baraja/${id}`)
+  ////////
+  listDecks(endpoint: string, token: string) {
+    return this.http.get(endpoint, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
   }
 
-  ////////
+  //
+  getNumberDecks(token: string) {
+    return this.http.get(ConfigurationRouteService.url + '/number-decks', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
 }

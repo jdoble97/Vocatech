@@ -8,6 +8,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 //MatDialog
@@ -16,7 +19,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 
 const material = [MatFormFieldModule,MatInputModule, MatButtonModule, MatTabsModule, MatDialogModule,MatButtonModule,MatCardModule, MatSelectModule,
-  MatProgressSpinnerModule]
+  MatProgressSpinnerModule, MatTableModule, MatCheckboxModule]
 
 @NgModule({
   declarations: [],

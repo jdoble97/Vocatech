@@ -1,5 +1,5 @@
 export class User{
-    status: boolean;
+    status?: boolean;
     name?: string;
     email?: string;
     pass?: string

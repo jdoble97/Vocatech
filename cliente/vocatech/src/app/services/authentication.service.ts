@@ -12,7 +12,7 @@ export class AuthenticationService {
 
   getTokenFromServer(user, endpoint: string){
     let misHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(endpoint, user,{headers: misHeaders});
+    return this.http.post(endpoint, JSON.stringify(user),{headers: misHeaders});
   }
 
   sendCredentials(user) {

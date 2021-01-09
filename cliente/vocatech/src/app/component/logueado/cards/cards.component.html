@@ -1,1 +1,19 @@
-<p>Definicion de las cartas</p>
+<h1 mat-dialog-title>{{deck.Name | uppercase}}: {{cards.length}}</h1>
+<ng-container *ngIf="cards.length>0">
+  <mat-dialog-content>
+    <table>
+      <tr>
+        <th>Palabra</th>
+        <th>Traducción</th>
+      </tr>
+      <tr *ngFor="let item of cards">
+        <td>{{item.SpanishName}}</td>
+        <td>{{item.EnglishName}}</td>
+      </tr>
+    </table>
+  </mat-dialog-content>
+</ng-container>
+
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close style="background-color: red;">Cerrar</button>
+</mat-dialog-actions>

@@ -27,7 +27,7 @@ module.exports = {
                 .then(conn => {
                     let myQuery = "SELECT EMAIL, Pass FROM user WHERE EMAIL=?";
                     conn.query(myQuery, [user.email])
-                        .then(row => {
+                    .then(row => {
                             resolve({ status: true, data: row[0] })
                         })
                         .catch(err => {

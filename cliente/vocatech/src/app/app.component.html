@@ -1,5 +1,6 @@
 <div>
-    <app-contenedor *ngIf=" isLogin ; else loguearse " ></app-contenedor>
+    <app-navbar-desktop *ngIf=" isLogin ; else loguearse "></app-navbar-desktop>
+
     <ng-template #loguearse>
         <app-menu-before-login></app-menu-before-login>
     </ng-template>

@@ -1,11 +1,9 @@
 <mat-card class="deck">
-    <mat-card-header>
-      <div mat-card-avatar class="avatar"></div>
-      <mat-card-title>{{deck.Name}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="../../../../assets/img/writing.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="seeCards(deck.ID)">Ver</button>
-      <button mat-raised-button style="background-color: rgb(88, 16, 28);">Añadir a favoritos</button>
-    </mat-card-actions>
-  </mat-card>
+  <mat-card-header>
+    <mat-card-title>{{deck.Name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="../../../../assets/img/writing.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="seeCards(deck.ID)">Ver</button>
+  </mat-card-actions>
+</mat-card>

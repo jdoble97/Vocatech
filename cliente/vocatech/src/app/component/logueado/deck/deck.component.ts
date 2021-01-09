@@ -17,11 +17,12 @@ export class DeckComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public seeCards(id: number){
+  public seeCards(id: number) {
     const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
     dialogConfig.data = this.deck;
-     dialogConfig.height = "5000px";
-     this.dialog.open(CardsComponent, dialogConfig);
+    dialogConfig.panelClass = "cardsModal";
+    this.dialog.open(CardsComponent, dialogConfig);
   }
 
 }

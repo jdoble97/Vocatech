@@ -1,0 +1,24 @@
+<h2 mat-dialog-title style="text-align: center;">Click en la baraja para modificar</h2>
+<h3 style="text-align: center;">Barajas: {{numberDecks}}</h3>
+<ng-container *ngIf="numberDecks>0">
+    <mat-dialog-content>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+            <tr *ngFor="let item of decks">
+                <td><p>{{item.Name}}</p></td>
+                <td class="buttons">
+                    <button mat-raised-button class="deleteButton" (click)="deleteDeck(item)">Eliminar</button>
+                    <button mat-raised-button class="editButton" mat-dialog-close (click)="edit(item)">Editar</button>
+                </td>
+            </tr>
+        </table>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="lastDecks()">Anterior</button>
+        <span>{{numberActual}}/{{numberDecks}}</span>
+        <button mat-raised-button color="accent" (click)="nextDecks()">Siguiente</button>
+    </mat-dialog-actions>
+</ng-container>

@@ -1,0 +1,27 @@
+*{
+    color: black;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+td{
+    text-align: center;
+}
+tr{
+    display: flex;
+}
+tr >*{
+    flex: 1 1 50%;
+}
+tr:nth-child(even){
+    background-color: #ddd;
+}
+mat-dialog-actions{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-evenly;
+}

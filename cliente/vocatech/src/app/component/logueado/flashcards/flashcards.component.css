@@ -5,71 +5,33 @@
     /* margin: 2em 0; */
 }
 
-.search {
-    flex: 2 1 content;
-    padding-top: 1em;
-    background-color: #333232;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
 .decksContainer {
-    flex: 9 1 100%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    padding-top: 2em;
     justify-content: space-evenly;
 }
 
-.decksContainer>* {
-    flex: 0 1 30%;
+app-deck {
+    min-width: 200px;
+    max-width: 300px;
+    flex: 1 1 25%;
+    margin: 0.2em;
 }
 
-.pagination {
-    flex: 2 1 auto;
-    margin-top: 1em;
-    align-self: center;
-}
-
-form {
+.moreDecks{
+    margin-top: 2.5em;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.mat-form-field {
-    width: 30%;
-}
-
-button {
-    margin-left: 1em;
+    justify-content: space-evenly;
 }
 
 @media only screen and (max-width: 700px) {
-    form {
+    .decksContainer{
         flex-direction: column;
     }
-    .mat-form-field {
-        width: 100%;
-    }
-    button {
-        margin: 0 auto;
+    app-deck{
+        margin: 0 auto 1em auto;
     }
 }
 
-.pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-}
-
-.pagination a.active {
-    background-color: dodgerblue;
-    color: white;
-}
-
-.moreDecks {
-    margin: 0;
-}

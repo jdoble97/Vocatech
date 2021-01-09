@@ -11,8 +11,8 @@ export class CartasService {
 
 
   //Create
-  insertCarta(idBaraja: number, carta: Carta, token: string){
-    return this.http.post(ConfigurationRouteService.url+'/carta',JSON.stringify({id_baraja: idBaraja, ...carta}),{
+  insertCarta(endpoint: string, carta: Carta, token: string){
+    return this.http.post(ConfigurationRouteService.url+'/carta',JSON.stringify(carta),{
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
@@ -21,25 +21,23 @@ export class CartasService {
   }
 
   //Read
-  getCartas(idBaraja: number, token: string, endpoint: string){
+  getCartas(endpoint: string, token: string){
     return this.http.get(endpoint, {headers: {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     }});
   }
   
   //Update
-  updateCarta( carta: Carta, token: string){
-    return this.http.put(ConfigurationRouteService.url+'/carta',JSON.stringify(carta),{headers:{
+  updateCarta( endpoint: string,carta: Carta, token: string){
+    return this.http.put(endpoint,JSON.stringify(carta),{headers:{
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     }});
   }
 
   //Delete
-  deleteCarta(idCarta: number, token: string){
-    return this.http.delete(ConfigurationRouteService.url+`/carta/${idCarta}`,{headers:{
-      'Content-Type': 'application/json',
+  deleteCarta(endpoint: string, token: string){
+    return this.http.delete(endpoint,{headers:{
       Authorization: `Bearer ${token}`
     }})
   }

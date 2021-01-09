@@ -26,7 +26,6 @@ export class RegisterComponent implements OnInit{
 
   ngOnInit(): void {
     this.createForm();
-    console.log('Creando registrador')
   }
 
   createForm(){
@@ -39,20 +38,20 @@ export class RegisterComponent implements OnInit{
 
   onSubmit(){
     let usuario = this.registro.value;
-    console.log('Objeto ',usuario['Pass']);
     this.register(usuario);
   }
 
   register(user:any): void{
     const url = ConfigurationRouteService.url+'/signup'
     this.http.getTokenFromServer(user, url).subscribe(resp=>{
-      console.log(resp)
+      
       if(resp['status']){
         this.onSubmitSuccess();
-        let userRegistered: User = {status: true, email: user['EMAIL'], name: user['Name'], pass: user['Pass']};
-        this.userService.setUser(<User>resp);
+        
+        let userRegistered: User = {status: true, email: user['EMAIL'], name: user['Name'], token: resp['token']};
+        this.userService.setUser(<User>userRegistered);
         this.userService.sendState(true);
-        this.userService.setUserInStorage();
+        this.userService.setUserInStorage();        
         this.router.navigate(['home']);
       }else{
         this.onSubmitFail(resp['message'])
@@ -66,7 +65,6 @@ export class RegisterComponent implements OnInit{
       Pass: ''
     });
     this.formTemplate.resetForm();
-    console.log('Exito')
   }
   onSubmitFail(message: string): void{
     this.registro.reset({

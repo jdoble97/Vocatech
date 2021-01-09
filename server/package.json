@@ -1,5 +1,5 @@
 {
-  "name": "kario.live",
+  "name": "Vocatech",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -19,7 +19,6 @@
     "moment": "^2.29.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6",
-    "sqlite3": "^5.0.0"
+    "nodemon": "^2.0.6"
   }
 }

@@ -24,7 +24,6 @@ module.exports = {
         if(token.message){
             return res.status(401).json(token)
         }
-        console.log('Token,',token)
         res.locals.user = token
         next();
     },
@@ -43,7 +42,6 @@ module.exports = {
         if(!user.email || !user.pass || !user.name){
             return res.status(400).json({status: false, message: 'Falta alguno de los campos'});
         }
-        console.log("Registrando", user)
         res.locals.user = user;
         next();
     },
