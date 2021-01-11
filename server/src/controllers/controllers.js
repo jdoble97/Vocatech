@@ -50,8 +50,7 @@ module.exports = {
     //Baraja
     insertBarajaController: (req, res) => {
         let baraja = {FK_Email: res.locals.user, ...req.body}
-        console.log("sdfasfd",baraja);
-        console.log('DENTRO DE INSERT');
+        console.log("Baraja ha insertar",baraja);
         barajaDB.insertDeck(baraja)
             .then(resultado => {
                 return res.status(200).json(resultado);

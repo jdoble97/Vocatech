@@ -84,7 +84,7 @@ export class EditDeckComponent implements OnInit {
     ]).then((result) => {
       // 
       if (result['value']) {
-        if (result['value'][0].length > 0 && result['value'][1].length > 0) {
+        if (result['value'][0].length > 0 && result['value'][1].length > 0 && result['value'][0].length < 30 && result['value'][1].length < 30) {
           this.addCardCorrect(result['value']);
         } else {
           this.addCardIncorrect();
@@ -120,7 +120,7 @@ export class EditDeckComponent implements OnInit {
   addCardIncorrect() {
     Swal.fire({
       icon: 'info',
-      text: 'Cada palabra debe tener por lo menos una letra'
+      text: 'Cada palabra debe tener por lo menos una letra o menos de 30 letras'
     })
   }
   //////

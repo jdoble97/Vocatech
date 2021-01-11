@@ -16,7 +16,6 @@ module.exports = {
     },
 
     isAuth: (req,res,next)=>{
-        //REVISAR TOKEN VALIDATION
         const token = validateToken(req.headers.authorization);
         if(!token){
             return res.status(403).json({status: false, message: 'No hay token'})
@@ -54,5 +53,4 @@ module.exports = {
         res.locals.user = user;
         next();
     }
-
 }

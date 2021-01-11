@@ -32,6 +32,8 @@ import { ModifyDeckComponent } from './component/logueado/modify-deck/modify-dec
 import { EditDeckComponent } from './component/logueado/edit-deck/edit-deck.component';
 import { BarajaService } from './services/baraja.service';
 import { CartasService } from './services/cartas.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { CartasService } from './services/cartas.service';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AuthenticationService, UserService, BarajaService, CartasService, ],
   bootstrap: [AppComponent]

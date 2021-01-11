@@ -5,7 +5,7 @@
         <div class="decksContainer" >
             <app-deck *ngFor="let deck of barajas" [deck]="deck"></app-deck>
         </div>
-        <div class="moreDecks">
+        <div class="moreDecks" *ngIf="numberDecks> 12">
             <button mat-raised-button color="accent" class="LastDecks" (click)="lastDecks()">Anterior</button>
             <span>{{actualDecks}}/{{numberDecks}}</span>
             <button mat-raised-button color="accent" class="nextDecks" (click)="nextDecks()">Siguiente</button>
