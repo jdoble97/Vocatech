@@ -4,7 +4,7 @@ Cada baraja tendrá unas cartas, una carta representa una palabra en  español e
 Por ejemplo la baraja Animales puede tener una carta que sea Gato-Cat.
 
 # URL
-Puedes encontrar la aplicación en vocatech.me
+Puedes encontrar la aplicación en https://vocatech.me
 
 ### Características que tiene la aplicación
 La aplicación te permite crear un usuario como loguearte.
